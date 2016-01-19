@@ -39,49 +39,50 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollableControl3 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.fLPItemNotFound = new System.Windows.Forms.FlowLayoutPanel();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.label1 = new System.Windows.Forms.Label();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.xtraScrollableControl4 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.fLPItemNotFound = new System.Windows.Forms.FlowLayoutPanel();
             this.cmdImport = new DevExpress.XtraEditors.SimpleButton();
             this.cmdScanDoc = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.cmdClearData = new DevExpress.XtraEditors.SimpleButton();
-            this.xtraScrollableControl4 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.txtSearch = new DevExpress.XtraEditors.TextEdit();
-            this.cmdSearch = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            this.xtraScrollableControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            this.xtraScrollableControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
-            this.xtraScrollableControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
-            this.xtraScrollableControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -172,6 +173,14 @@
             this.panelControl1.Size = new System.Drawing.Size(450, 311);
             this.panelControl1.TabIndex = 4;
             // 
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(2, 2);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(446, 307);
+            this.xtraScrollableControl1.TabIndex = 0;
+            // 
             // panelControl2
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -183,6 +192,41 @@
             this.panelControl2.Size = new System.Drawing.Size(303, 311);
             this.panelControl2.TabIndex = 5;
             // 
+            // xtraScrollableControl3
+            // 
+            this.xtraScrollableControl3.Controls.Add(this.gridControl1);
+            this.xtraScrollableControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl3.Location = new System.Drawing.Point(2, 2);
+            this.xtraScrollableControl3.Name = "xtraScrollableControl3";
+            this.xtraScrollableControl3.Size = new System.Drawing.Size(299, 307);
+            this.xtraScrollableControl3.TabIndex = 1;
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.MenuManager = this.barManager1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(299, 307);
+            this.gridControl1.TabIndex = 2;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsCustomization.AllowGroup = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // xtraScrollableControl2
+            // 
+            this.xtraScrollableControl2.Location = new System.Drawing.Point(57, 37);
+            this.xtraScrollableControl2.Name = "xtraScrollableControl2";
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(75, 23);
+            this.xtraScrollableControl2.TabIndex = 0;
+            // 
             // panelControl3
             // 
             this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -192,6 +236,105 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(448, 111);
             this.panelControl3.TabIndex = 6;
+            // 
+            // xtraScrollableControl4
+            // 
+            this.xtraScrollableControl4.Controls.Add(this.textEdit5);
+            this.xtraScrollableControl4.Controls.Add(this.textEdit1);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl4);
+            this.xtraScrollableControl4.Controls.Add(this.textEdit3);
+            this.xtraScrollableControl4.Controls.Add(this.label1);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl2);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl3);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl1);
+            this.xtraScrollableControl4.Controls.Add(this.textEdit2);
+            this.xtraScrollableControl4.Controls.Add(this.textEdit4);
+            this.xtraScrollableControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl4.Location = new System.Drawing.Point(2, 2);
+            this.xtraScrollableControl4.Name = "xtraScrollableControl4";
+            this.xtraScrollableControl4.Size = new System.Drawing.Size(444, 107);
+            this.xtraScrollableControl4.TabIndex = 0;
+            // 
+            // textEdit5
+            // 
+            this.textEdit5.Location = new System.Drawing.Point(299, 39);
+            this.textEdit5.MenuManager = this.barManager1;
+            this.textEdit5.Name = "textEdit5";
+            this.textEdit5.Size = new System.Drawing.Size(137, 20);
+            this.textEdit5.TabIndex = 9;
+            // 
+            // textEdit1
+            // 
+            this.textEdit1.Location = new System.Drawing.Point(77, 13);
+            this.textEdit1.MenuManager = this.barManager1;
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Size = new System.Drawing.Size(137, 20);
+            this.textEdit1.TabIndex = 0;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(223, 42);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(19, 13);
+            this.labelControl4.TabIndex = 7;
+            this.labelControl4.Text = "City";
+            // 
+            // textEdit3
+            // 
+            this.textEdit3.Location = new System.Drawing.Point(77, 65);
+            this.textEdit3.MenuManager = this.barManager1;
+            this.textEdit3.Name = "textEdit3";
+            this.textEdit3.Size = new System.Drawing.Size(137, 20);
+            this.textEdit3.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(220, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "StreetAddress";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(6, 42);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(50, 13);
+            this.labelControl2.TabIndex = 3;
+            this.labelControl2.Text = "Last Name";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(6, 68);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(61, 13);
+            this.labelControl3.TabIndex = 5;
+            this.labelControl3.Text = "Fast Number";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(6, 16);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(51, 13);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "First Name";
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.Location = new System.Drawing.Point(77, 39);
+            this.textEdit2.MenuManager = this.barManager1;
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Size = new System.Drawing.Size(137, 20);
+            this.textEdit2.TabIndex = 2;
+            // 
+            // textEdit4
+            // 
+            this.textEdit4.Location = new System.Drawing.Point(299, 13);
+            this.textEdit4.MenuManager = this.barManager1;
+            this.textEdit4.Name = "textEdit4";
+            this.textEdit4.Size = new System.Drawing.Size(137, 20);
+            this.textEdit4.TabIndex = 6;
             // 
             // panelControl4
             // 
@@ -203,31 +346,6 @@
             this.panelControl4.Size = new System.Drawing.Size(759, 117);
             this.panelControl4.TabIndex = 7;
             // 
-            // xtraScrollableControl2
-            // 
-            this.xtraScrollableControl2.Location = new System.Drawing.Point(57, 37);
-            this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(75, 23);
-            this.xtraScrollableControl2.TabIndex = 0;
-            // 
-            // xtraScrollableControl1
-            // 
-            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl1.Location = new System.Drawing.Point(2, 2);
-            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
-            this.xtraScrollableControl1.Size = new System.Drawing.Size(446, 307);
-            this.xtraScrollableControl1.TabIndex = 0;
-            // 
-            // xtraScrollableControl3
-            // 
-            this.xtraScrollableControl3.Controls.Add(this.cmdSearch);
-            this.xtraScrollableControl3.Controls.Add(this.txtSearch);
-            this.xtraScrollableControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl3.Location = new System.Drawing.Point(2, 2);
-            this.xtraScrollableControl3.Name = "xtraScrollableControl3";
-            this.xtraScrollableControl3.Size = new System.Drawing.Size(299, 307);
-            this.xtraScrollableControl3.TabIndex = 1;
-            // 
             // fLPItemNotFound
             // 
             this.fLPItemNotFound.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -235,87 +353,6 @@
             this.fLPItemNotFound.Name = "fLPItemNotFound";
             this.fLPItemNotFound.Size = new System.Drawing.Size(755, 113);
             this.fLPItemNotFound.TabIndex = 0;
-            // 
-            // textEdit1
-            // 
-            this.textEdit1.Location = new System.Drawing.Point(77, 13);
-            this.textEdit1.MenuManager = this.barManager1;
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(137, 20);
-            this.textEdit1.TabIndex = 0;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(6, 16);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(51, 13);
-            this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "First Name";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(6, 42);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(50, 13);
-            this.labelControl2.TabIndex = 3;
-            this.labelControl2.Text = "Last Name";
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(77, 39);
-            this.textEdit2.MenuManager = this.barManager1;
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Size = new System.Drawing.Size(137, 20);
-            this.textEdit2.TabIndex = 2;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(6, 68);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(61, 13);
-            this.labelControl3.TabIndex = 5;
-            this.labelControl3.Text = "Fast Number";
-            // 
-            // textEdit3
-            // 
-            this.textEdit3.Location = new System.Drawing.Point(77, 65);
-            this.textEdit3.MenuManager = this.barManager1;
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Size = new System.Drawing.Size(137, 20);
-            this.textEdit3.TabIndex = 4;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(223, 42);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(19, 13);
-            this.labelControl4.TabIndex = 7;
-            this.labelControl4.Text = "City";
-            // 
-            // textEdit4
-            // 
-            this.textEdit4.Location = new System.Drawing.Point(299, 13);
-            this.textEdit4.MenuManager = this.barManager1;
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Size = new System.Drawing.Size(137, 20);
-            this.textEdit4.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "StreetAddress";
-            // 
-            // textEdit5
-            // 
-            this.textEdit5.Location = new System.Drawing.Point(299, 39);
-            this.textEdit5.MenuManager = this.barManager1;
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Size = new System.Drawing.Size(137, 20);
-            this.textEdit5.TabIndex = 9;
             // 
             // cmdImport
             // 
@@ -354,44 +391,6 @@
             this.cmdClearData.TabIndex = 10;
             this.cmdClearData.Text = "Clear Workspace";
             // 
-            // xtraScrollableControl4
-            // 
-            this.xtraScrollableControl4.Controls.Add(this.textEdit5);
-            this.xtraScrollableControl4.Controls.Add(this.textEdit1);
-            this.xtraScrollableControl4.Controls.Add(this.labelControl4);
-            this.xtraScrollableControl4.Controls.Add(this.textEdit3);
-            this.xtraScrollableControl4.Controls.Add(this.label1);
-            this.xtraScrollableControl4.Controls.Add(this.labelControl2);
-            this.xtraScrollableControl4.Controls.Add(this.labelControl3);
-            this.xtraScrollableControl4.Controls.Add(this.labelControl1);
-            this.xtraScrollableControl4.Controls.Add(this.textEdit2);
-            this.xtraScrollableControl4.Controls.Add(this.textEdit4);
-            this.xtraScrollableControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraScrollableControl4.Location = new System.Drawing.Point(2, 2);
-            this.xtraScrollableControl4.Name = "xtraScrollableControl4";
-            this.xtraScrollableControl4.Size = new System.Drawing.Size(444, 107);
-            this.xtraScrollableControl4.TabIndex = 0;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(55, 3);
-            this.txtSearch.MenuManager = this.barManager1;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.3F);
-            this.txtSearch.Properties.Appearance.Options.UseFont = true;
-            this.txtSearch.Size = new System.Drawing.Size(237, 20);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // cmdSearch
-            // 
-            this.cmdSearch.Location = new System.Drawing.Point(3, 3);
-            this.cmdSearch.Name = "cmdSearch";
-            this.cmdSearch.Size = new System.Drawing.Size(46, 23);
-            this.cmdSearch.TabIndex = 1;
-            this.cmdSearch.Text = "Search";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,21 +413,22 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.xtraScrollableControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
-            this.xtraScrollableControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
-            this.panelControl5.ResumeLayout(false);
             this.xtraScrollableControl4.ResumeLayout(false);
             this.xtraScrollableControl4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
+            this.panelControl5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -467,8 +467,8 @@
         private DevExpress.XtraEditors.PanelControl panelControl5;
         private DevExpress.XtraEditors.SimpleButton cmdClearData;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl4;
-        private DevExpress.XtraEditors.TextEdit txtSearch;
-        private DevExpress.XtraEditors.SimpleButton cmdSearch;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
 
 
 

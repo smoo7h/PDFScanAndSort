@@ -69,3 +69,9 @@ C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFS
 C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe.licenses
 C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe
 C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.pdb
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.Persistent.Base.v13.1.dll
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.Persistent.BaseImpl.v13.1.dll
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\GIBS.Module.dll
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\System.Configuration.dll
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.Persistent.Base.v13.1.xml
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.Persistent.BaseImpl.v13.1.xml

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DevExpress.Persistent.BaseImpl.v13.1</name>
+    </assembly>
+    <members>
+        <member name="T:DevExpress.Persistent.BaseImpl.BaseObject">
+
+            <summary>
+                <para>Represents one of the base persistent classes from which business classes can be inherited.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Persistent.BaseImpl.BaseObject.#ctor(DevExpress.Xpo.Session)">
+            <summary>
+                <para>Used to initialize a new instance of a BaseObject descendant, in a particular <a href="http://documentation.devexpress.com/#XPO/CustomDocument2022">Session</a>.
+
+</para>
+            </summary>
+            <param name="session">
+		A <b>DevExpress.Xpo.Session</b> object which represents a persistent object's cache where the business object will be instantiated.
+
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.Persistent.BaseImpl.BaseObject.#ctor">
+            <summary>
+                <para>Creates a new instance of the BaseObject class.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.Persistent.BaseImpl.BaseObject.AfterConstruction">
+            <summary>
+                <para>Invoked when the current object is about to be initialized after its creation. 
+
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Persistent.BaseImpl.BaseObject.IsXpoProfiling">
+            <summary>
+                <para>Set this field to <b>true</b> before profiling the application via XPO Profiler.
+</para>
+            </summary>
+            <returns> [To be supplied] </returns>
+
+
+        </member>
+        <member name="P:DevExpress.Persistent.BaseImpl.BaseObject.Oid">
+            <summary>
+                <para>Specifies the persistent object's identifier.
+</para>
+            </summary>
+            <value>A globally unique identifier which represents the persistent object's identifier.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.Persistent.BaseImpl.BaseObject.OidInitializationMode">
+            <summary>
+                <para>Specifies when a new GUID value is assigned to the <see cref="P:DevExpress.Persistent.BaseImpl.BaseObject.Oid"/> property. 
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.Persistent.BaseImpl.OidInitializationMode"/> enumeration value specifying when a new GUID value is assigned to the Oid property. 
+</value>
+
+
+        </member>
+        <member name="M:DevExpress.Persistent.BaseImpl.BaseObject.ToString">
+            <summary>
+                <para>Returns a human-readable string that represents the current business object.
+</para>
+            </summary>
+            <returns>A string representing the current business object.
+</returns>
+
+
+        </member>
+        <member name="T:DevExpress.Persistent.BaseImpl.OidInitializationMode">
+
+            <summary>
+                <para>Contains values specifying when a new GUID value is assigned to the <see cref="P:DevExpress.Persistent.BaseImpl.BaseObject.Oid"/> property. 
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.Persistent.BaseImpl.OidInitializationMode.AfterConstruction">
+            <summary>
+                <para>Specifies that a new GUID value is assigned to the <see cref="P:DevExpress.Persistent.BaseImpl.BaseObject.Oid"/> property in the <b>AfterConstruction</b> method override.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.Persistent.BaseImpl.OidInitializationMode.OnSaving">
+            <summary>
+                <para>Specifies that a new GUID value is assigned to the <see cref="P:DevExpress.Persistent.BaseImpl.BaseObject.Oid"/> property in the <b>OnSaving</b> method override. 
+</para>
+            </summary>
+
+
+        </member>
+    </members>
+</doc>
