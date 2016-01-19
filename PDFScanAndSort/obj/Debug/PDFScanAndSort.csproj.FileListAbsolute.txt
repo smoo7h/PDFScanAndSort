@@ -1,0 +1,10 @@
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\PDFScanAndSort.exe.config
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\PDFScanAndSort.exe
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\bin\Debug\PDFScanAndSort.pdb
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.csprojResolveAssemblyReference.cache
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.Form1.resources
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.Properties.Resources.resources
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.csproj.GenerateResource.Cache
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.pdb
+C:\Users\matt\Documents\Development\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe.licenses
