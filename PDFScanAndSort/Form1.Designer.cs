@@ -56,10 +56,10 @@
             this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdImport = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdScanDoc = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.cmdClearData = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl4 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.txtSearch = new DevExpress.XtraEditors.TextEdit();
             this.cmdSearch = new DevExpress.XtraEditors.SimpleButton();
@@ -317,42 +317,42 @@
             this.textEdit5.Size = new System.Drawing.Size(137, 20);
             this.textEdit5.TabIndex = 9;
             // 
-            // simpleButton1
+            // cmdImport
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(159, 8);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(135, 46);
-            this.simpleButton1.TabIndex = 8;
-            this.simpleButton1.Text = "Import into DataBase";
+            this.cmdImport.Location = new System.Drawing.Point(159, 8);
+            this.cmdImport.Name = "cmdImport";
+            this.cmdImport.Size = new System.Drawing.Size(135, 46);
+            this.cmdImport.TabIndex = 8;
+            this.cmdImport.Text = "Import into DataBase";
             // 
-            // simpleButton2
+            // cmdScanDoc
             // 
-            this.simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.simpleButton2.Location = new System.Drawing.Point(5, 8);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(148, 46);
-            this.simpleButton2.TabIndex = 9;
-            this.simpleButton2.Text = "Scan Document";
+            this.cmdScanDoc.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmdScanDoc.Location = new System.Drawing.Point(5, 8);
+            this.cmdScanDoc.Name = "cmdScanDoc";
+            this.cmdScanDoc.Size = new System.Drawing.Size(148, 46);
+            this.cmdScanDoc.TabIndex = 9;
+            this.cmdScanDoc.Text = "Scan Document";
             // 
             // panelControl5
             // 
             this.panelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl5.Controls.Add(this.simpleButton3);
-            this.panelControl5.Controls.Add(this.simpleButton2);
-            this.panelControl5.Controls.Add(this.simpleButton1);
+            this.panelControl5.Controls.Add(this.cmdClearData);
+            this.panelControl5.Controls.Add(this.cmdScanDoc);
+            this.panelControl5.Controls.Add(this.cmdImport);
             this.panelControl5.Location = new System.Drawing.Point(468, 28);
             this.panelControl5.Name = "panelControl5";
             this.panelControl5.Size = new System.Drawing.Size(299, 111);
             this.panelControl5.TabIndex = 8;
             // 
-            // simpleButton3
+            // cmdClearData
             // 
-            this.simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.simpleButton3.Location = new System.Drawing.Point(5, 60);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(289, 46);
-            this.simpleButton3.TabIndex = 10;
-            this.simpleButton3.Text = "Clear Workspace";
+            this.cmdClearData.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmdClearData.Location = new System.Drawing.Point(5, 60);
+            this.cmdClearData.Name = "cmdClearData";
+            this.cmdClearData.Size = new System.Drawing.Size(289, 46);
+            this.cmdClearData.TabIndex = 10;
+            this.cmdClearData.Text = "Clear Workspace";
             // 
             // xtraScrollableControl4
             // 
@@ -452,8 +452,8 @@
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl3;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl2;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton cmdScanDoc;
+        private DevExpress.XtraEditors.SimpleButton cmdImport;
         private DevExpress.XtraEditors.TextEdit textEdit5;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.LabelControl labelControl4;
@@ -465,7 +465,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraEditors.PanelControl panelControl5;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton cmdClearData;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl4;
         private DevExpress.XtraEditors.TextEdit txtSearch;
         private DevExpress.XtraEditors.SimpleButton cmdSearch;
