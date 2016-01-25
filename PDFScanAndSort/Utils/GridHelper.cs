@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace PDFScanAndSort.Utils
 {
@@ -29,6 +32,10 @@ namespace PDFScanAndSort.Utils
 
             List<Record> recordList = new List<Record>();
 
+            string readText = File.ReadAllText(@"RecordList.txt");
+
+            recordList = JsonConvert.DeserializeObject<List<Record>>(readText);
+
 
             return recordList;
 
@@ -36,8 +43,18 @@ namespace PDFScanAndSort.Utils
 
         public static void SaveRecordFile(List<Record> recordList)
         {
+            string json = JsonConvert.SerializeObject(recordList, Formatting.Indented);
 
-          
+            int stop = 0;
+
+            System.IO.File.WriteAllText(@"RecordList.txt", json);
+
+            //using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"RecordList.txt", true))
+            //{
+            //    file.WriteLine(json);
+            //}
+
+
 
         }
 
