@@ -24,42 +24,10 @@ namespace PDFScanAndSort
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
 
-            XPODataHelper datahelper = new XPODataHelper();
-
-            IObjectSpace space = datahelper.Connect();
-
-            // Create a Session object. 
-            Session session1 = ((XPObjectSpace)space).Session;
-            // Create an XPClassInfo object corresponding to the Person class. 
-            XPClassInfo classInfo = session1.GetClassInfo(typeof(GIBS.Module.Models.Programs.Program));
-            // Create an XPServerCollectionSource object. 
-            XPServerCollectionSource xpServerCollectionSource1 = new XPServerCollectionSource(session1, classInfo);
-
-            gridControl1.Dock = DockStyle.Fill;
-
-            // Bind the grid control to the data source. 
-            gridControl1.DataSource = xpServerCollectionSource1;
-
-            gridControl1.MainView.HideEditor();
-            
-            //clear the columns
-            ((ColumnView)gridControl1.Views[0]).Columns.Clear();
-
-            //add searchable properties to grid
-            ((ColumnView)gridControl1.Views[0]).Columns.AddVisible("FullName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FirstName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.LastName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FAST");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.StreetAddress1");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.City.Name");
-            //show the find panel
-            ((ColumnView)gridControl1.Views[0]).ShowFindPanel();
-            ((ColumnView)gridControl1.Views[0]).OptionsFind.AlwaysVisible = true;
-
-            //add event listener for when row changes
-            ((ColumnView)gridControl1.Views[0]).FocusedRowChanged += Form1_FocusedRowChanged;
-     
+            //initalize list DB view
+            InitializeDataBaseListView();
         
+
         
         }
 
@@ -77,27 +45,57 @@ namespace PDFScanAndSort
 
             txtCity.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name").ToString() : "";
 
+            txtLDC.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("LDC.Name") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("LDC.Name").ToString() : "";
+
+            txtAppType.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("ApplicationType") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("ApplicationType").ToString() : "";
 
         }
 
-        private void cmdScanDoc_Click(object sender, EventArgs e)
+
+        public void InitializeDataBaseListView()
         {
-            string path = @"C:\Users\gianluca.gallo\Desktop\Working Space\copier1@greensaver.org_20160112_150327.pdf";
-            List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
+            XPODataHelper datahelper = new XPODataHelper();
 
-            List<Models.Card> cards = new List<Models.Card>();
+            IObjectSpace space = datahelper.Connect();
 
-            foreach (var item in tiffLocations[0])
-            {
-                
-                Models.Card card = new Models.Card();
-                card.PageText = PDFFunctions.imageToText(@item.Value);
-                card.ImageLocation = @item.Value;
-                cards.Add(card);
-            }
-        }
+            // Create a Session object. 
+            Session session1 = ((XPObjectSpace)space).Session;
+            // Create an XPClassInfo object corresponding to the Person class. 
+            XPClassInfo classInfo = session1.GetClassInfo(typeof(GIBS.Module.Models.Programs.HAP.HAPApplication));
+            // Create an XPServerCollectionSource object. 
+            XPServerCollectionSource xpServerCollectionSource1 = new XPServerCollectionSource(session1, classInfo);
 
+            gridControl1.Dock = DockStyle.Fill;
+
+            // Bind the grid control to the data source. 
+            gridControl1.DataSource = xpServerCollectionSource1;
+
+            gridControl1.MainView.HideEditor();
+
+            //clear the columns
+            ((ColumnView)gridControl1.Views[0]).Columns.Clear();
+
+            //add searchable properties to grid
+            ((ColumnView)gridControl1.Views[0]).Columns.AddVisible("FullName");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FirstName");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.LastName");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FAST");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.StreetAddress1");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.City.Name");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("LDC.Name");
+            ((ColumnView)gridControl1.Views[0]).Columns.AddField("ApplicationType");
+            //((ColumnView)gridControl1.Views[0]).Columns.AddField("SocialHousing");
+           
+            //show the find panel
+            ((ColumnView)gridControl1.Views[0]).ShowFindPanel();
+            ((ColumnView)gridControl1.Views[0]).OptionsFind.AlwaysVisible = true;
+
+            //add event listener for when row changes
+            ((ColumnView)gridControl1.Views[0]).FocusedRowChanged += Form1_FocusedRowChanged;
      
+
+
+        }
 
        
 

@@ -85,7 +85,21 @@ namespace PDFScanAndSort.Utils
             }
         }
 
+        public void SaveFileToDataBase(string ObjectKey, string fileLocation)
+        {
+            IObjectSpace space = this.Connect();
 
+            using (space)
+            {
+           //     Program p = space.GetObjectByKey<Program>(new Guid(ObjectKey));
+
+
+
+            }
+
+            this.Disconnect();
+
+        }
 
 
     }

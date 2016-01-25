@@ -63,6 +63,10 @@
             this.cmdScanDoc = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.cmdClearData = new DevExpress.XtraEditors.SimpleButton();
+            this.txtLDC = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAppType = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -83,6 +87,8 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -239,6 +245,10 @@
             // 
             // xtraScrollableControl4
             // 
+            this.xtraScrollableControl4.Controls.Add(this.txtAppType);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl6);
+            this.xtraScrollableControl4.Controls.Add(this.txtLDC);
+            this.xtraScrollableControl4.Controls.Add(this.labelControl5);
             this.xtraScrollableControl4.Controls.Add(this.txtCity);
             this.xtraScrollableControl4.Controls.Add(this.txtFirstName);
             this.xtraScrollableControl4.Controls.Add(this.labelControl4);
@@ -257,7 +267,7 @@
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(299, 39);
+            this.txtCity.Location = new System.Drawing.Point(299, 29);
             this.txtCity.MenuManager = this.barManager1;
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(137, 20);
@@ -265,7 +275,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(77, 13);
+            this.txtFirstName.Location = new System.Drawing.Point(77, 3);
             this.txtFirstName.MenuManager = this.barManager1;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(137, 20);
@@ -273,7 +283,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(223, 42);
+            this.labelControl4.Location = new System.Drawing.Point(223, 32);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(19, 13);
             this.labelControl4.TabIndex = 7;
@@ -281,7 +291,7 @@
             // 
             // txtFastNumber
             // 
-            this.txtFastNumber.Location = new System.Drawing.Point(77, 65);
+            this.txtFastNumber.Location = new System.Drawing.Point(77, 55);
             this.txtFastNumber.MenuManager = this.barManager1;
             this.txtFastNumber.Name = "txtFastNumber";
             this.txtFastNumber.Size = new System.Drawing.Size(137, 20);
@@ -290,7 +300,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 16);
+            this.label1.Location = new System.Drawing.Point(220, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 8;
@@ -298,7 +308,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(6, 42);
+            this.labelControl2.Location = new System.Drawing.Point(6, 32);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(50, 13);
             this.labelControl2.TabIndex = 3;
@@ -306,7 +316,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(6, 68);
+            this.labelControl3.Location = new System.Drawing.Point(6, 58);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(61, 13);
             this.labelControl3.TabIndex = 5;
@@ -314,7 +324,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(6, 16);
+            this.labelControl1.Location = new System.Drawing.Point(6, 6);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(51, 13);
             this.labelControl1.TabIndex = 1;
@@ -322,7 +332,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(77, 39);
+            this.txtLastName.Location = new System.Drawing.Point(77, 29);
             this.txtLastName.MenuManager = this.barManager1;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(137, 20);
@@ -330,7 +340,7 @@
             // 
             // txtStreetAddress
             // 
-            this.txtStreetAddress.Location = new System.Drawing.Point(299, 13);
+            this.txtStreetAddress.Location = new System.Drawing.Point(299, 3);
             this.txtStreetAddress.MenuManager = this.barManager1;
             this.txtStreetAddress.Name = "txtStreetAddress";
             this.txtStreetAddress.Size = new System.Drawing.Size(137, 20);
@@ -370,7 +380,7 @@
             this.cmdScanDoc.Size = new System.Drawing.Size(148, 46);
             this.cmdScanDoc.TabIndex = 9;
             this.cmdScanDoc.Text = "Scan Document";
-            this.cmdScanDoc.Click += new System.EventHandler(this.cmdScanDoc_Click);
+
             // 
             // panelControl5
             // 
@@ -391,6 +401,40 @@
             this.cmdClearData.Size = new System.Drawing.Size(289, 46);
             this.cmdClearData.TabIndex = 10;
             this.cmdClearData.Text = "Clear Workspace";
+            // 
+            // txtLDC
+            // 
+            this.txtLDC.Location = new System.Drawing.Point(299, 55);
+            this.txtLDC.MenuManager = this.barManager1;
+            this.txtLDC.Name = "txtLDC";
+            this.txtLDC.Size = new System.Drawing.Size(137, 20);
+            this.txtLDC.TabIndex = 11;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(223, 58);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(19, 13);
+            this.labelControl5.TabIndex = 10;
+            this.labelControl5.Text = "LDC";
+            // 
+            // txtAppType
+            // 
+            this.txtAppType.Location = new System.Drawing.Point(77, 81);
+            this.txtAppType.MenuManager = this.barManager1;
+            this.txtAppType.Name = "txtAppType";
+            this.txtAppType.Size = new System.Drawing.Size(137, 20);
+            this.txtAppType.TabIndex = 12;
+
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(6, 84);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(46, 13);
+            this.labelControl6.TabIndex = 13;
+            this.labelControl6.Text = "App Type";
+
             // 
             // Form1
             // 
@@ -430,6 +474,8 @@
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -470,6 +516,10 @@
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl4;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraEditors.TextEdit txtAppType;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.TextEdit txtLDC;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
 
 
 
