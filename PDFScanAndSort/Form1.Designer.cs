@@ -32,7 +32,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.cmdConfig = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -47,6 +47,10 @@
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollableControl4 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.txtAppType = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtLDC = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtCity = new DevExpress.XtraEditors.TextEdit();
             this.txtFirstName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -63,10 +67,6 @@
             this.cmdScanDoc = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.cmdClearData = new DevExpress.XtraEditors.SimpleButton();
-            this.txtLDC = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.txtAppType = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -78,6 +78,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             this.xtraScrollableControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFastNumber.Properties)).BeginInit();
@@ -87,8 +89,6 @@
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -102,7 +102,7 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barSubItem1,
-            this.barButtonItem1,
+            this.cmdConfig,
             this.barButtonItem2});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 3;
@@ -124,15 +124,16 @@
             this.barSubItem1.Caption = "File";
             this.barSubItem1.Id = 0;
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.cmdConfig),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
             this.barSubItem1.Name = "barSubItem1";
             // 
-            // barButtonItem1
+            // cmdConfig
             // 
-            this.barButtonItem1.Caption = "Configure";
-            this.barButtonItem1.Id = 1;
-            this.barButtonItem1.Name = "barButtonItem1";
+            this.cmdConfig.Caption = "Configure";
+            this.cmdConfig.Id = 1;
+            this.cmdConfig.Name = "cmdConfig";
+            this.cmdConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.cmdConfig_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -265,6 +266,38 @@
             this.xtraScrollableControl4.Size = new System.Drawing.Size(444, 107);
             this.xtraScrollableControl4.TabIndex = 0;
             // 
+            // txtAppType
+            // 
+            this.txtAppType.Location = new System.Drawing.Point(77, 81);
+            this.txtAppType.MenuManager = this.barManager1;
+            this.txtAppType.Name = "txtAppType";
+            this.txtAppType.Size = new System.Drawing.Size(137, 20);
+            this.txtAppType.TabIndex = 12;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(6, 84);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(46, 13);
+            this.labelControl6.TabIndex = 13;
+            this.labelControl6.Text = "App Type";
+            // 
+            // txtLDC
+            // 
+            this.txtLDC.Location = new System.Drawing.Point(299, 55);
+            this.txtLDC.MenuManager = this.barManager1;
+            this.txtLDC.Name = "txtLDC";
+            this.txtLDC.Size = new System.Drawing.Size(137, 20);
+            this.txtLDC.TabIndex = 11;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(223, 58);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(19, 13);
+            this.labelControl5.TabIndex = 10;
+            this.labelControl5.Text = "LDC";
+            // 
             // txtCity
             // 
             this.txtCity.Location = new System.Drawing.Point(299, 29);
@@ -380,7 +413,7 @@
             this.cmdScanDoc.Size = new System.Drawing.Size(148, 46);
             this.cmdScanDoc.TabIndex = 9;
             this.cmdScanDoc.Text = "Scan Document";
-
+            this.cmdScanDoc.Click += new System.EventHandler(this.cmdScanDoc_Click);
             // 
             // panelControl5
             // 
@@ -401,40 +434,6 @@
             this.cmdClearData.Size = new System.Drawing.Size(289, 46);
             this.cmdClearData.TabIndex = 10;
             this.cmdClearData.Text = "Clear Workspace";
-            // 
-            // txtLDC
-            // 
-            this.txtLDC.Location = new System.Drawing.Point(299, 55);
-            this.txtLDC.MenuManager = this.barManager1;
-            this.txtLDC.Name = "txtLDC";
-            this.txtLDC.Size = new System.Drawing.Size(137, 20);
-            this.txtLDC.TabIndex = 11;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(223, 58);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(19, 13);
-            this.labelControl5.TabIndex = 10;
-            this.labelControl5.Text = "LDC";
-            // 
-            // txtAppType
-            // 
-            this.txtAppType.Location = new System.Drawing.Point(77, 81);
-            this.txtAppType.MenuManager = this.barManager1;
-            this.txtAppType.Name = "txtAppType";
-            this.txtAppType.Size = new System.Drawing.Size(137, 20);
-            this.txtAppType.TabIndex = 12;
-
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Location = new System.Drawing.Point(6, 84);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(46, 13);
-            this.labelControl6.TabIndex = 13;
-            this.labelControl6.Text = "App Type";
-
             // 
             // Form1
             // 
@@ -465,6 +464,8 @@
             this.panelControl3.ResumeLayout(false);
             this.xtraScrollableControl4.ResumeLayout(false);
             this.xtraScrollableControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFastNumber.Properties)).EndInit();
@@ -474,8 +475,6 @@
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -485,7 +484,7 @@
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.BarSubItem barSubItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem cmdConfig;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;

@@ -19,6 +19,8 @@ namespace PDFScanAndSort
 {
     public partial class Form1 : Form
     {
+        public List<Models.Card> cards;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +28,8 @@ namespace PDFScanAndSort
 
             //initalize list DB view
             InitializeDataBaseListView();
-        
+
+            cards = new List<Models.Card>();
 
         
         }
@@ -95,6 +98,30 @@ namespace PDFScanAndSort
      
 
 
+        }
+
+        private void cmdScanDoc_Click(object sender, EventArgs e)
+        {
+            string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\Luca's Legacy\TestPDFRead\copier1@greensaver.org_20160112_150327.pdf";
+            List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
+
+            foreach (var item in tiffLocations[0])
+            {
+
+                Models.Card card = new Models.Card();
+                card.PageText = PDFFunctions.imageToText(@item.Value);
+                card.ImageLocation = @item.Value;
+                cards.Add(card);
+            }
+
+
+        }
+
+        private void cmdConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ConfigForm configForm = new ConfigForm();
+
+            configForm.ShowDialog();
         }
 
        
