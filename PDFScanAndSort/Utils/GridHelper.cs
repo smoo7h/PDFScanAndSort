@@ -15,7 +15,7 @@ namespace PDFScanAndSort.Utils
     public static class GridHelper
     {
 
-        public static void AddNewRecords(List<Record> records, GridControl theGrid)
+        public static void AddRecords(List<Record> records, GridControl theGrid)
         {
             BindingList<Record> listDataSource = new BindingList<Record>();
 
@@ -26,6 +26,16 @@ namespace PDFScanAndSort.Utils
             
             theGrid.DataSource = listDataSource;
         }
+
+        public static void AddNewRecord(Record record, GridControl theGrid)
+        {
+            BindingList<Record> listDataSource = theGrid.DataSource as BindingList<Record>;
+
+            listDataSource.Add(record);
+
+            theGrid.DataSource = listDataSource;
+        }
+
 
         public static List<Record> GetRecords()
         {
