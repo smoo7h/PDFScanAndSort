@@ -370,6 +370,7 @@
             this.cmdScanDoc.Size = new System.Drawing.Size(148, 46);
             this.cmdScanDoc.TabIndex = 9;
             this.cmdScanDoc.Text = "Scan Document";
+            this.cmdScanDoc.Click += new System.EventHandler(this.cmdScanDoc_Click);
             // 
             // panelControl5
             // 

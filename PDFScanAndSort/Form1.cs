@@ -80,6 +80,23 @@ namespace PDFScanAndSort
 
         }
 
+        private void cmdScanDoc_Click(object sender, EventArgs e)
+        {
+            string path = @"C:\Users\gianluca.gallo\Desktop\Working Space\copier1@greensaver.org_20160112_150327.pdf";
+            List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
+
+            List<Models.Card> cards = new List<Models.Card>();
+
+            foreach (var item in tiffLocations[0])
+            {
+                
+                Models.Card card = new Models.Card();
+                card.PageText = PDFFunctions.imageToText(@item.Value);
+                card.ImageLocation = @item.Value;
+                cards.Add(card);
+            }
+        }
+
      
 
        
