@@ -216,7 +216,6 @@ C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpres
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.XtraLayout.v13.1.xml
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.XtraNavBar.v13.1.xml
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\DevExpress.XtraPrinting.v13.1.xml
-C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Ghostscript.NET.xml
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Tesseract.xml
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\de\DevExpress.Data.v13.1.resources.dll
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\es\DevExpress.Data.v13.1.resources.dll
@@ -264,3 +263,8 @@ C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAn
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.csproj.GenerateResource.Cache
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe.licenses
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.ConfigForm.resources
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.dll
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.xml
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\RecordList.txt
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Ghostscript.NET.dll
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\bin\Debug\Ghostscript.NET.xml

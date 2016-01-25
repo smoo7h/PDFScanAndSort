@@ -21,20 +21,25 @@ namespace PDFScanAndSort
         {
             InitializeComponent();
 
-   
+            List<Record> r = GridHelper.GetRecords();
 
-            List<Record> r = new List<Record>();
-            r.Add(new Record(1,"Matt rec","Test App"));
+            //r.Add(new Record(1,"Matt rec","Test App"));
             GridHelper.AddRecords(r, this.gridConfig);
 
 
             //for testing 
             this.lstBoxApplications.SelectedValueChanged += lstBoxApplications_SelectedValueChanged;
 
-            lstBoxApplications.Items.Add("Test App");
-            lstBoxApplications.Items.Add("Test App2");
-          
 
+            var groupedCustomerList = r
+    .GroupBy(u => u.Application)
+    .Select(grp => grp.ToList())
+    .ToList();
+
+            foreach (var item in groupedCustomerList)
+            {
+                lstBoxApplications.Items.Add(item[0].Application);
+            }
 
         }
 

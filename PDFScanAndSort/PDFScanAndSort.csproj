@@ -74,13 +74,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Ghostscript.NET">
-      <HintPath>..\..\Visual Studio 2012\Projects\PDFReader\PDFReader\bin\Debug\Ghostscript.NET.dll</HintPath>
+      <HintPath>..\packages\Ghostscript.NET.1.2.0\lib\net40\Ghostscript.NET.dll</HintPath>
     </Reference>
     <Reference Include="GhostscriptSharp">
       <HintPath>..\packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
     </Reference>
     <Reference Include="GIBS.Module">
       <HintPath>..\..\..\..\Desktop\GIBS.Module.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration">
@@ -187,6 +190,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="RecordList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="x64\liblept171.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
