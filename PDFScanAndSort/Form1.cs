@@ -2,6 +2,7 @@
 using DevExpress.ExpressApp.Xpo;
 using DevExpress.Xpo;
 using DevExpress.Xpo.Metadata;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using GIBS.Module.Models.Programs.HAP;
 using PDFScanAndSort.Utils;
@@ -19,7 +20,11 @@ namespace PDFScanAndSort
 {
     public partial class Form1 : Form
     {
+        public PictureBox currSelectedImg;
+
         public List<Models.Card> cards;
+
+        public List<Models.Record> records;
 
         public Form1()
         {
@@ -31,7 +36,80 @@ namespace PDFScanAndSort
 
             cards = new List<Models.Card>();
 
+            records = GridHelper.GetRecords();
+            RefreshGrid();
         
+        }
+
+        private void RefreshGrid()
+        {
+
+
+            var groupedAppList = records
+            .GroupBy(u => u.Application)
+            .Select(grp => grp.ToList())
+            .ToList();
+
+            foreach (var item in groupedAppList)
+            {
+                GroupControl gc = new GroupControl();
+                gc.Text = item[0].Application;
+                gc.Dock = DockStyle.Top;
+                gc.Width = 446;
+                gc.Height = 165;
+                xtraScrollableControl1.Controls.Add(gc);
+
+
+                FlowLayoutPanel panelLong = new FlowLayoutPanel();
+                panelLong.Width = 442;
+                panelLong.Height = 142;
+                panelLong.AutoSize = false;
+                panelLong.AutoScroll = true;
+                panelLong.WrapContents = false;
+                panelLong.Dock = DockStyle.Top;
+                panelLong.HorizontalScroll.Value = 0;
+                gc.Controls.Add(panelLong);
+
+                int i = 1;
+                foreach (var rr in item)
+                {
+                    FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+                    pictureContainer.Width = 85;
+                    pictureContainer.Height = 111;
+                    pictureContainer.AutoSize = false;
+                    pictureContainer.AutoScroll = false;
+                    pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+                    panelLong.Controls.Add(pictureContainer);
+
+                    PictureBox picture = new PictureBox();
+                    picture.Width = 76;
+                    picture.Height = 75;
+                    picture.AutoSize = false;
+                    //picture.Image = Bitmap.FromFile(item);
+                    picture.BorderStyle = BorderStyle.FixedSingle;
+                    picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureContainer.Controls.Add(picture);
+
+
+
+                    picture.Visible = true;
+                    picture.BorderStyle = BorderStyle.FixedSingle;
+                    picture.DragEnter += pb_DragEnter;
+                    picture.DragDrop += pb_DragDrop;
+                    picture.MouseDown += pb_MouseDown;
+
+                    picture.AllowDrop = true;
+
+
+                    CheckBox checkbox = new CheckBox();
+                    checkbox.AutoSize = false;
+                    checkbox.Width = 76;
+                    checkbox.Height = 22;
+                    checkbox.Text = "Page: " + i;
+                    pictureContainer.Controls.Add(checkbox);
+                    i++;
+                }
+            }
         }
 
         void Form1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -53,7 +131,6 @@ namespace PDFScanAndSort
             txtAppType.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("ApplicationType") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("ApplicationType").ToString() : "";
 
         }
-
 
         public void InitializeDataBaseListView()
         {
@@ -109,11 +186,43 @@ namespace PDFScanAndSort
             {
 
                 Models.Card card = new Models.Card();
-                card.PageText = PDFFunctions.imageToText(@item.Value);
+            //    card.PageText = PDFFunctions.imageToText(@item.Value);
                 card.ImageLocation = @item.Value;
                 cards.Add(card);
             }
 
+            foreach (var card in cards)
+            {
+                FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+                pictureContainer.Width = 77;
+                pictureContainer.Height = 90;
+                pictureContainer.AutoSize = false;
+                pictureContainer.AutoScroll = false;
+                pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+                fLPItemNotFound.Controls.Add(pictureContainer);
+
+                PictureBox picture = new PictureBox();
+                picture.Width = 68;
+                picture.Height = 81;
+                picture.AutoSize = false;
+                picture.Image = Bitmap.FromFile(card.ImageLocation);
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureContainer.Controls.Add(picture);
+
+
+
+                picture.Visible = true;
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.DragEnter += pb_DragEnter;
+                picture.DragDrop += pb_DragDrop;
+                picture.MouseDown += pb_MouseDown;
+
+                picture.AllowDrop = true;
+            }
+
+
+            currSelectedImg = new PictureBox();
 
         }
 
@@ -122,10 +231,57 @@ namespace PDFScanAndSort
             ConfigForm configForm = new ConfigForm();
 
             configForm.ShowDialog();
+
+            this.xtraScrollableControl1.Controls.Clear();
+
+            cards = new List<Models.Card>();
+
+            records.Clear();
+
+            records = GridHelper.GetRecords();
+            RefreshGrid();
+
+
+        
+
         }
 
-       
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.AllowDrop = true;
+        }
 
+        void pb_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+              //  Form2 f2 = new Form2((sender as PictureBox).Image);
+
+               // f2.ShowDialog();
+
+                return;
+            }
+
+            //throw new NotImplementedException();
+            currSelectedImg = sender as PictureBox;
+
+            (sender as PictureBox).DoDragDrop((sender as PictureBox).Image, DragDropEffects.Copy);
+
+
+        }
+
+        void pb_DragDrop(object sender, DragEventArgs e)
+        {
+            currSelectedImg.Image = (sender as PictureBox).Image;
+
+            (sender as PictureBox).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+        }
+
+        void pb_DragEnter(object sender, DragEventArgs e)
+        {
+
+            e.Effect = DragDropEffects.Copy;
+        }
       
     }
 }

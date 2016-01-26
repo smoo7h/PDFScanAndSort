@@ -32,13 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gridConfig = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.CmdAddColumn = new DevExpress.XtraEditors.SimpleButton();
             this.txtPageNumber = new System.Windows.Forms.TextBox();
             this.txtSearchTerms = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtApplication = new System.Windows.Forms.TextBox();
+            this.CmdAddColumn = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxApplications)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridConfig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -76,15 +76,6 @@
             this.gridView1.GridControl = this.gridConfig;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
-            // 
-            // CmdAddColumn
-            // 
-            this.CmdAddColumn.Location = new System.Drawing.Point(571, 413);
-            this.CmdAddColumn.Name = "CmdAddColumn";
-            this.CmdAddColumn.Size = new System.Drawing.Size(69, 23);
-            this.CmdAddColumn.TabIndex = 3;
-            this.CmdAddColumn.Text = "Add Record";
-            this.CmdAddColumn.Click += new System.EventHandler(this.CmdAddColumn_Click);
             // 
             // txtPageNumber
             // 
@@ -134,6 +125,15 @@
             this.txtApplication.Size = new System.Drawing.Size(100, 20);
             this.txtApplication.TabIndex = 8;
             // 
+            // CmdAddColumn
+            // 
+            this.CmdAddColumn.Location = new System.Drawing.Point(571, 413);
+            this.CmdAddColumn.Name = "CmdAddColumn";
+            this.CmdAddColumn.Size = new System.Drawing.Size(69, 23);
+            this.CmdAddColumn.TabIndex = 3;
+            this.CmdAddColumn.Text = "Add Record";
+            this.CmdAddColumn.Click += new System.EventHandler(this.CmdAddColumn_Click);
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,12 +165,12 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraGrid.GridControl gridConfig;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.SimpleButton CmdAddColumn;
         private System.Windows.Forms.TextBox txtPageNumber;
         private System.Windows.Forms.TextBox txtSearchTerms;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtApplication;
+        private DevExpress.XtraEditors.SimpleButton CmdAddColumn;
     }
 }

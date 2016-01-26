@@ -17,35 +17,42 @@ namespace PDFScanAndSort
 {
     public partial class ConfigForm : Form
     {
+        List<Record> r;
+
         public ConfigForm()
         {
             InitializeComponent();
 
-            List<Record> r = GridHelper.GetRecords();
+            r = GridHelper.GetRecords();
 
-            //r.Add(new Record(1,"Matt rec","Test App"));
+         
             GridHelper.AddRecords(r, this.gridConfig);
 
+            //refresh app list
+            reFreshAppList();
 
             //for testing 
             this.lstBoxApplications.SelectedValueChanged += lstBoxApplications_SelectedValueChanged;
 
 
-            var groupedCustomerList = r
-    .GroupBy(u => u.Application)
-    .Select(grp => grp.ToList())
-    .ToList();
-
-            foreach (var item in groupedCustomerList)
-            {
-                lstBoxApplications.Items.Add(item[0].Application);
-            }
+          
 
         }
 
         private void CmdAddColumn_Click(object sender, EventArgs e)
         {
-            GridHelper.AddNewRecord(new Record(Convert.ToInt32(txtPageNumber.Text), txtSearchTerms.Text, txtApplication.Text), this.gridConfig);
+            Record newrecord = new Record(Convert.ToInt32(txtPageNumber.Text),txtSearchTerms.Text, txtApplication.Text);
+
+            GridHelper.AddNewRecord(newrecord, this.gridConfig);
+            r.Add(newrecord);
+
+            GridHelper.SaveRecordFile(r);
+
+            this.lstBoxApplications.Items.Clear();
+
+            reFreshAppList();
+
+            GridHelper.SaveRecordFile(r);
 
         }
 
@@ -68,6 +75,19 @@ namespace PDFScanAndSort
 
         }
 
+        public  void reFreshAppList()
+        {
+            var groupedCustomerList = r
+  .GroupBy(u => u.Application)
+  .Select(grp => grp.ToList())
+  .ToList();
+
+            foreach (var item in groupedCustomerList)
+            {
+                lstBoxApplications.Items.Add(item[0].Application);
+            }
+
+        }
         
 
 

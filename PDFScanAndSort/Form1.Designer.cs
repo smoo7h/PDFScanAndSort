@@ -391,11 +391,13 @@
             // 
             // fLPItemNotFound
             // 
+            this.fLPItemNotFound.AutoScroll = true;
             this.fLPItemNotFound.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fLPItemNotFound.Location = new System.Drawing.Point(2, 2);
             this.fLPItemNotFound.Name = "fLPItemNotFound";
             this.fLPItemNotFound.Size = new System.Drawing.Size(755, 113);
             this.fLPItemNotFound.TabIndex = 0;
+            this.fLPItemNotFound.WrapContents = false;
             // 
             // cmdImport
             // 
@@ -452,6 +454,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Form1";
             this.Text = "PDFScanAndSort";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
