@@ -5,6 +5,7 @@ using DevExpress.Xpo.Metadata;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Base;
 using GIBS.Module.Models.Programs.HAP;
+using PDFScanAndSort.Models;
 using PDFScanAndSort.Utils;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace PDFScanAndSort
 
         public List<Models.Record> records;
 
+        public List<Models.Application> applications;
+
         public Form1()
         {
             InitializeComponent();
@@ -35,8 +38,9 @@ namespace PDFScanAndSort
             InitializeDataBaseListView();
 
             cards = new List<Models.Card>();
-
             records = GridHelper.GetRecords();
+            applications = new List<Models.Application>();
+
             RefreshGrid();
         
         }
@@ -69,6 +73,13 @@ namespace PDFScanAndSort
                 panelLong.Dock = DockStyle.Top;
                 panelLong.HorizontalScroll.Value = 0;
                 gc.Controls.Add(panelLong);
+
+                //create application class
+
+                PDFScanAndSort.Models.Application app = new PDFScanAndSort.Models.Application();
+                app.Name = item[0].Application;
+                applications.Add(app);
+               
 
                 int i = 1;
                 foreach (var rr in item)
@@ -108,7 +119,17 @@ namespace PDFScanAndSort
                     checkbox.Text = "Page: " + i;
                     pictureContainer.Controls.Add(checkbox);
                     i++;
+
+                    //add blank cards to the application
+
+                    Page page = new Page();
+                  //  card.PageNumber = i;
+                    page.Application = app;
+                    app.Pages.Add(page);
+
                 }
+
+
             }
         }
 
@@ -281,6 +302,15 @@ namespace PDFScanAndSort
         {
 
             e.Effect = DragDropEffects.Copy;
+        }
+
+        private void cmdClearData_Click(object sender, EventArgs e)
+        {
+            foreach (var item in applications)
+            {
+
+                MessageBox.Show(item.Name);
+            }
         }
       
     }

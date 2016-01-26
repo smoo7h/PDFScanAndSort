@@ -436,6 +436,7 @@
             this.cmdClearData.Size = new System.Drawing.Size(289, 46);
             this.cmdClearData.TabIndex = 10;
             this.cmdClearData.Text = "Clear Workspace";
+            this.cmdClearData.Click += new System.EventHandler(this.cmdClearData_Click);
             // 
             // Form1
             // 

@@ -21,6 +21,10 @@ namespace PDFScanAndSort.Models
 
         public List<Rank> PageRanks { get; set; }
 
+       // public int PageNumber { get; set; }
+
+        public Application Application { get; set; }
+
 
 
     }

@@ -13,7 +13,7 @@ namespace PDFScanAndSort.Models
 
         public List<string> SearchStrings { get; set; }
 
-
+        public Application Application { get; set; }
 
     }
 }
