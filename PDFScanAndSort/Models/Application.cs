@@ -10,7 +10,7 @@ namespace PDFScanAndSort.Models
     {
         public Application()
         {
-            this.Cards = new List<Card>();
+          //  this.Cards = new List<Card>();
 
             this.Pages = new List<Page>();
 
@@ -21,7 +21,7 @@ namespace PDFScanAndSort.Models
 
         public List<Page> Pages { get; set; }
 
-        public List<Card> Cards { get; set; }
+      //  public List<Card> Cards { get; set; }
 
 
 

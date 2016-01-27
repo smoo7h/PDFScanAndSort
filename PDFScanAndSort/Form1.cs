@@ -21,7 +21,11 @@ namespace PDFScanAndSort
 {
     public partial class Form1 : Form
     {
-        public PictureBox currSelectedImg;
+        public Card currSelectedImg;
+
+        public Card currentCard;
+
+     //   public Card currSelectedCard;
 
         public List<Models.Card> cards;
 
@@ -35,7 +39,8 @@ namespace PDFScanAndSort
             this.WindowState = FormWindowState.Maximized;
 
             //initalize list DB view
-            InitializeDataBaseListView();
+
+   //         InitializeDataBaseListView();
 
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
@@ -92,7 +97,7 @@ namespace PDFScanAndSort
                     pictureContainer.BorderStyle = BorderStyle.FixedSingle;
                     panelLong.Controls.Add(pictureContainer);
 
-                    PictureBox picture = new PictureBox();
+                    Card picture = new Card();
                     picture.Width = 76;
                     picture.Height = 75;
                     picture.AutoSize = false;
@@ -105,27 +110,35 @@ namespace PDFScanAndSort
 
                     picture.Visible = true;
                     picture.BorderStyle = BorderStyle.FixedSingle;
-                    picture.DragEnter += pb_DragEnter;
-                    picture.DragDrop += pb_DragDrop;
-                    picture.MouseDown += pb_MouseDown;
+                    picture.DragEnter += picture_DragEnter;
+                    picture.DragDrop += picture_DragDrop;
+                    picture.MouseDown += picture_MouseDown;
 
                     picture.AllowDrop = true;
 
 
-                    CheckBox checkbox = new CheckBox();
-                    checkbox.AutoSize = false;
-                    checkbox.Width = 76;
-                    checkbox.Height = 22;
-                    checkbox.Text = "Page: " + i;
-                    pictureContainer.Controls.Add(checkbox);
-                    i++;
+                    //CheckBox checkbox = new CheckBox();
+                    //checkbox.AutoSize = false;
+                    //checkbox.Width = 76;
+                    //checkbox.Height = 22;
+                    //checkbox.Text = "Page: " + i;
+                    //pictureContainer.Controls.Add(checkbox);
 
-                    //add blank cards to the application
 
                     Page page = new Page();
-                  //  card.PageNumber = i;
+                    page.Card = picture;
+                    picture.Page = page;
+                    picture.Page.PageNumber = i;
+                    
+                    //  card.PageNumber = i;
                     page.Application = app;
+                    // page.PictureBox = picture;
                     app.Pages.Add(page);
+
+                    i++;
+
+                    
+
 
                 }
 
@@ -200,19 +213,12 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
-            string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\Luca's Legacy\TestPDFRead\copier1@greensaver.org_20160112_150327.pdf";
+            string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
             List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
 
-            foreach (var item in tiffLocations[0])
-            {
+          
 
-                Models.Card card = new Models.Card();
-            //    card.PageText = PDFFunctions.imageToText(@item.Value);
-                card.ImageLocation = @item.Value;
-                cards.Add(card);
-            }
-
-            foreach (var card in cards)
+            foreach (var card in tiffLocations[0])
             {
                 FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
                 pictureContainer.Width = 77;
@@ -222,28 +228,128 @@ namespace PDFScanAndSort
                 pictureContainer.BorderStyle = BorderStyle.FixedSingle;
                 fLPItemNotFound.Controls.Add(pictureContainer);
 
-                PictureBox picture = new PictureBox();
+                Card picture = new Card();
+
+                picture.ImageLocation = @card.Value;
+                cards.Add(picture);
+
                 picture.Width = 68;
                 picture.Height = 81;
                 picture.AutoSize = false;
-                picture.Image = Bitmap.FromFile(card.ImageLocation);
+                picture.Image = Bitmap.FromFile(picture.ImageLocation);
                 picture.BorderStyle = BorderStyle.FixedSingle;
                 picture.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureContainer.Controls.Add(picture);
 
+               // card.PictureBox = picture;
 
-
+                //init drang and drop events
                 picture.Visible = true;
                 picture.BorderStyle = BorderStyle.FixedSingle;
-                picture.DragEnter += pb_DragEnter;
-                picture.DragDrop += pb_DragDrop;
-                picture.MouseDown += pb_MouseDown;
+                picture.DragEnter += picture_DragEnter;
+                picture.DragDrop += picture_DragDrop;
+                picture.MouseDown += picture_MouseDown;
 
                 picture.AllowDrop = true;
             }
 
 
-            currSelectedImg = new PictureBox();
+            currSelectedImg = new Card();
+
+     //       Console.WriteLine(currSelectedImg.Image.ToString());
+
+        }
+
+      
+
+        void picture_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //**
+                //need to add right click to enlarge function here 
+
+                //  Form2 f2 = new Form2((sender as Card).Image);
+
+                // f2.ShowDialog();
+
+                return;
+            }
+
+            currSelectedImg = sender as Card;
+
+            currentCard = sender as Card;
+
+            //currSelectedCard = FindCard(cards, currSelectedImg);
+
+            (sender as Card).DoDragDrop((sender as Card), DragDropEffects.Copy);
+
+        }
+
+        void picture_DragEnter(object sender, DragEventArgs e)
+        {
+
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        void picture_DragDrop(object sender, DragEventArgs e)
+        {
+            //switch the card cards and change the page object on the card
+
+            Card top = sender as Card;
+            Card bottom = (Card)e.Data.GetData(typeof(Card));
+
+            Page topPage = top.Page;
+            Page bottomPage = bottom.Page;
+
+            if (topPage != null)
+            {
+                topPage.Card = bottom;
+            }
+
+            if (bottomPage != null)
+            {
+                bottomPage.Card = top;
+            }
+
+           
+          
+
+            top.Page = bottomPage;
+            bottom.Page = topPage;
+
+            object p = bottom.Parent;
+
+            bottom.Parent = top.Parent;
+
+            top.Parent = (Control)p;
+            
+            //currSelectedImg.Image = (sender as Card).Image;
+          //  currSelectedImg = (sender as Card);
+
+         //   (sender as Card).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+
+//            sender = currentCard;
+
+        
+
+
+
+
+
+
+            //currSelectedImg.Image = (sender as Card).Image;
+            //currSelectedImg = (sender as Card);
+
+            //(sender as Card).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+
+            //sender = currentCard;
+
+            //Card c = (Card)e.Data.GetData(typeof(Card));
+      
+
+
+          
 
         }
 
@@ -260,6 +366,7 @@ namespace PDFScanAndSort
             records.Clear();
 
             records = GridHelper.GetRecords();
+
             RefreshGrid();
 
 
@@ -272,46 +379,18 @@ namespace PDFScanAndSort
             this.AllowDrop = true;
         }
 
-        void pb_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-              //  Form2 f2 = new Form2((sender as PictureBox).Image);
-
-               // f2.ShowDialog();
-
-                return;
-            }
-
-            //throw new NotImplementedException();
-            currSelectedImg = sender as PictureBox;
-
-            (sender as PictureBox).DoDragDrop((sender as PictureBox).Image, DragDropEffects.Copy);
-
-
-        }
-
-        void pb_DragDrop(object sender, DragEventArgs e)
-        {
-            currSelectedImg.Image = (sender as PictureBox).Image;
-
-            (sender as PictureBox).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
-        }
-
-        void pb_DragEnter(object sender, DragEventArgs e)
-        {
-
-            e.Effect = DragDropEffects.Copy;
-        }
-
         private void cmdClearData_Click(object sender, EventArgs e)
         {
             foreach (var item in applications)
             {
+                Console.WriteLine("application name - " + item.Name );
 
-                MessageBox.Show(item.Name);
+                foreach (var i in item.Pages)
+                {
+                    Console.WriteLine("Page Number - " + i.Card.Page.PageNumber + "card location - " + i.Card.ImageLocation  );
+                }
+
             }
         }
-      
     }
 }

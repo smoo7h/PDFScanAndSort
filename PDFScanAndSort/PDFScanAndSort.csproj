@@ -116,7 +116,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Application.cs" />
-    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Card.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PDF.cs" />
     <Compile Include="Models\Rank.cs" />
