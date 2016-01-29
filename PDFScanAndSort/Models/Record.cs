@@ -17,6 +17,7 @@ namespace PDFScanAndSort.Models
             this.pageNumber = pageNumber;
             this.searchTerms = searchTerms;
             this.application = application;
+            this.searchTermStringList = new List<string>();
 
         }
 
@@ -34,6 +35,26 @@ namespace PDFScanAndSort.Models
             set { application = value; }
         }
 
+        private List<string> searchTermStringList;
+        public List<string> SearchTermStringList
+        {
+            get { return searchTermStringList; }
+            set { searchTermStringList = value; }
+        }
+
+        public void BuildStringList()
+        {
+            if (searchTerms.Length > 0)
+            {
+                searchTermStringList.Clear();
+                string[] terms = searchTerms.Split(',');
+
+                foreach (string s in terms)
+                {
+                    searchTermStringList.Add(s.Trim());
+                }
+            }
+        }
 
     }
 }

@@ -9,7 +9,12 @@ namespace PDFScanAndSort.Models
 {
     public class Page 
     {
-       
+        public Page()
+        {
+            this.SearchStrings = new List<string>();
+
+        }
+
      //   public PictureBox PictureBox { get; set; }
 
         public int PageNumber { get; set; }

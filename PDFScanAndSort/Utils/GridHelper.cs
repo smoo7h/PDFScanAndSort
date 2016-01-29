@@ -46,6 +46,10 @@ namespace PDFScanAndSort.Utils
 
             recordList = JsonConvert.DeserializeObject<List<Record>>(readText);
 
+            foreach (var item in recordList)
+            {
+                item.BuildStringList();
+            }
 
             return recordList;
 

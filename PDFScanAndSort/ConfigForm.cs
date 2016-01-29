@@ -25,6 +25,7 @@ namespace PDFScanAndSort
 
             r = GridHelper.GetRecords();
 
+
          
             GridHelper.AddRecords(r, this.gridConfig);
 
@@ -69,18 +70,14 @@ namespace PDFScanAndSort
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            
-
-        }
+      
 
         public  void reFreshAppList()
         {
             var groupedCustomerList = r
-  .GroupBy(u => u.Application)
-  .Select(grp => grp.ToList())
-  .ToList();
+              .GroupBy(u => u.Application)
+              .Select(grp => grp.ToList())
+              .ToList();
 
             foreach (var item in groupedCustomerList)
             {

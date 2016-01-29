@@ -267,3 +267,4 @@ C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAn
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe.licenses
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.pdb
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.csprojResolveAssemblyReference.cache

@@ -406,6 +406,7 @@
             this.cmdImport.Size = new System.Drawing.Size(135, 46);
             this.cmdImport.TabIndex = 8;
             this.cmdImport.Text = "Import into DataBase";
+            this.cmdImport.Click += new System.EventHandler(this.cmdImport_Click);
             // 
             // cmdScanDoc
             // 

@@ -11,9 +11,9 @@ namespace PDFScanAndSort.Models
 
         public Card card { get; set; }
 
-        public int NumberOfKeysFound { get; set; }
-
         public Page Page { get; set; }
+
+        public string TextFound { get; set; }
 
      
         

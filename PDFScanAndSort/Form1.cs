@@ -40,17 +40,17 @@ namespace PDFScanAndSort
 
             //initalize list DB view
 
-   //         InitializeDataBaseListView();
+            InitializeDataBaseListView();
 
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
             applications = new List<Models.Application>();
 
-            RefreshGrid();
+            RefreshApplicationGUI();
         
         }
 
-        private void RefreshGrid()
+        private void RefreshApplicationGUI()
         {
 
 
@@ -127,8 +127,10 @@ namespace PDFScanAndSort
 
                     Page page = new Page();
                     page.Card = picture;
+                    page.SearchStrings = rr.SearchTermStringList;
                     picture.Page = page;
                     picture.Page.PageNumber = i;
+                    cards.Add(picture);
                     
                     //  card.PageNumber = i;
                     page.Application = app;
@@ -231,6 +233,10 @@ namespace PDFScanAndSort
                 Card picture = new Card();
 
                 picture.ImageLocation = @card.Value;
+
+                picture.PageText = PDFFunctions.imageToText(@card.Value);
+
+                //add card to cardlist
                 cards.Add(picture);
 
                 picture.Width = 68;
@@ -240,8 +246,6 @@ namespace PDFScanAndSort
                 picture.BorderStyle = BorderStyle.FixedSingle;
                 picture.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureContainer.Controls.Add(picture);
-
-               // card.PictureBox = picture;
 
                 //init drang and drop events
                 picture.Visible = true;
@@ -260,8 +264,6 @@ namespace PDFScanAndSort
 
         }
 
-      
-
         void picture_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -279,8 +281,6 @@ namespace PDFScanAndSort
             currSelectedImg = sender as Card;
 
             currentCard = sender as Card;
-
-            //currSelectedCard = FindCard(cards, currSelectedImg);
 
             (sender as Card).DoDragDrop((sender as Card), DragDropEffects.Copy);
 
@@ -367,7 +367,7 @@ namespace PDFScanAndSort
 
             records = GridHelper.GetRecords();
 
-            RefreshGrid();
+            RefreshApplicationGUI();
 
 
         
@@ -391,6 +391,23 @@ namespace PDFScanAndSort
                 }
 
             }
+        }
+
+        private void cmdImport_Click(object sender, EventArgs e)
+        {
+            Ranker ranker = new Ranker(this.applications, this.cards);
+            
+            
+            ranker.RankCards();
+
+            foreach (var item in ranker.RanksList)
+            {
+                
+                Console.WriteLine(item.Page.PageNumber.ToString());
+            }
+
+
+
         }
     }
 }

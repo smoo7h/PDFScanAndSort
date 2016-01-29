@@ -16,7 +16,7 @@
   },
   {
     "PageNumber": 3,
-    "SearchTerms": "test search term",
+    "SearchTerms": "Save Energy and Improve Comfort",
     "Application": "string test app"
   },
   {
