@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.IO;
+using System.Windows.Forms;
 
 namespace PDFScanAndSort.Utils
 {
@@ -72,7 +73,31 @@ namespace PDFScanAndSort.Utils
 
         }
 
+        public static void SwapCards(Card top, Card bottom)
+        {
 
+            Page topPage = top.Page;
+            Page bottomPage = bottom.Page;
+
+            if (topPage != null)
+            {
+                topPage.Card = bottom;
+            }
+
+            if (bottomPage != null)
+            {
+                bottomPage.Card = top;
+            }
+
+            top.Page = bottomPage;
+            bottom.Page = topPage;
+
+            object p = bottom.Parent;
+
+            bottom.Parent = top.Parent;
+
+            top.Parent = (Control)p;
+        }
 
 
 
