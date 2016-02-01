@@ -268,3 +268,7 @@ C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAn
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.exe
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.pdb
 C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.csprojResolveAssemblyReference.cache
+C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\RecordList.txt
+C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.ConfigForm.resources

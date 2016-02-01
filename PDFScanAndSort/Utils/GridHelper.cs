@@ -42,7 +42,7 @@ namespace PDFScanAndSort.Utils
 
             List<Record> recordList = new List<Record>();
 
-            string readText = File.ReadAllText(@"RecordList.txt");
+            string readText = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + "RecordList.txt");
 
             recordList = JsonConvert.DeserializeObject<List<Record>>(readText);
 
@@ -61,7 +61,7 @@ namespace PDFScanAndSort.Utils
 
             int stop = 0;
 
-            System.IO.File.WriteAllText(@"RecordList.txt", json);
+            System.IO.File.WriteAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + "RecordList.txt", json);
 
             //using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"RecordList.txt", true))
             //{

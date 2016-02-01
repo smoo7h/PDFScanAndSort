@@ -1,0 +1,82 @@
+[
+  {
+    "PageNumber": 0,
+    "SearchTerms": "Home Assistance Program c/o GreenSaver",
+    "Application": "Resident Application",
+    "SearchTermStringList": [
+      "Home Assistance Program c/o GreenSaver"
+    ]
+  },
+  {
+    "PageNumber": 1,
+    "SearchTerms": "Complete this Resident Application if you are interested in participating",
+    "Application": "Resident Application",
+    "SearchTermStringList": [
+      "Complete this Resident Application if you are interested in participating"
+    ]
+  },
+  {
+    "PageNumber": 2,
+    "SearchTerms": "you MUST meet the following eligibility",
+    "Application": "Resident Application",
+    "SearchTermStringList": [
+      "you MUST meet the following eligibility"
+    ]
+  },
+  {
+    "PageNumber": 3,
+    "SearchTerms": "lf you and your home are offered any energy efficient products",
+    "Application": "Resident Application",
+    "SearchTermStringList": [
+      "lf you and your home are offered any energy efficient products"
+    ]
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "incandescent lighting will be replaced free of charge",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 1,
+    "SearchTerms": "if you own or manage the building",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 2,
+    "SearchTerms": "electric water heating are eligible to receive the",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 3,
+    "SearchTerms": "products or devices from resulting in electricity savings",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 4,
+    "SearchTerms": "The unit must be electrically heated to receive these measures",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 5,
+    "SearchTerms": "Hydro One Network and the IESO may publicize the Building Owner",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 6,
+    "SearchTerms": "and this Application will not be deemed to confer upon or give to any other person",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  },
+  {
+    "PageNumber": 7,
+    "SearchTerms": "we have authority to bind the Building Owner",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": []
+  }
+]

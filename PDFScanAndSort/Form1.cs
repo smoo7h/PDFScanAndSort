@@ -215,7 +215,8 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
+            string path = @"C:\Users\gianluca.gallo\Desktop\Working Space\copier1@greensaver.org_20160112_150327.pdf";
+            //string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
             List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
 
           
