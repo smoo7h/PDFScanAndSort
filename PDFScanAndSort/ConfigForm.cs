@@ -53,7 +53,7 @@ namespace PDFScanAndSort
 
             reFreshAppList();
 
-            GridHelper.SaveRecordFile(r);
+         //   GridHelper.SaveRecordFile(r);
 
         }
 
@@ -84,6 +84,12 @@ namespace PDFScanAndSort
                 lstBoxApplications.Items.Add(item[0].Application);
             }
 
+        }
+
+        private void ConfigForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            r = GridHelper.GetRecords();
+            GridHelper.SaveRecordFile(r);
         }
         
 

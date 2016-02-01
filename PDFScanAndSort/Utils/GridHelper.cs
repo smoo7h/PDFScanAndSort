@@ -99,7 +99,47 @@ namespace PDFScanAndSort.Utils
             top.Parent = (Control)p;
         }
 
+        public static void UpdateRankList(List<PDFScanAndSort.Models.Application> apps, List<Card> cards)
+        {
+            Ranker ranker = new Ranker(apps, cards);
+            
+            ranker.RankCards();
 
+            var grpApps = ranker.RanksList
+          .GroupBy(u => u.Page)
+          .Select(grp => grp.ToList())
+          .ToList();
+
+            foreach (var item in grpApps)
+            {
+                var grpPage = item
+                   .GroupBy(u => u.card)
+                   .Select(grp => grp.ToList())
+                   .ToList();
+
+                Card winningCard = null;
+                int winningGrpnum = 0;
+                int currentwinningGrpnum = 0;
+
+                foreach (var grpItem in grpPage)
+                {
+                    currentwinningGrpnum = grpItem.Count;
+
+                    if (winningGrpnum < currentwinningGrpnum)
+                    {
+                        winningGrpnum = currentwinningGrpnum;
+                        winningCard = grpItem[0].card;
+                    }
+
+                }
+
+                if (winningCard != null)
+                {
+                    GridHelper.SwapCards(item[0].Page.Card, winningCard);
+                }
+            }
+
+        }
 
     }
 }

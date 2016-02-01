@@ -272,3 +272,4 @@ C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\Record
 C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.dll
 C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\bin\Debug\Newtonsoft.Json.xml
 C:\Users\gianluca.gallo\Documents\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.ConfigForm.resources
+C:\Users\matt\Documents\GitHub\PDFScanAndSort\PDFScanAndSort\obj\Debug\PDFScanAndSort.ImageZoom.resources

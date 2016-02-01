@@ -215,7 +215,7 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
-            string path = @"C:\Users\gianluca.gallo\Desktop\Working Space\copier1@greensaver.org_20160112_150327.pdf";
+            string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
             //string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
             List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
 
@@ -395,17 +395,42 @@ namespace PDFScanAndSort
         {
             Ranker ranker = new Ranker(this.applications, this.cards);
             
-            
             ranker.RankCards();
 
-            foreach (var item in ranker.RanksList)
+            var grpApps = ranker.RanksList
+          .GroupBy(u => u.Page)
+          .Select(grp => grp.ToList())
+          .ToList();
+
+            foreach (var item in grpApps)
             {
-                
-                Console.WriteLine(item.Page.PageNumber.ToString());
+                var grpPage = item
+                   .GroupBy(u => u.card)
+                   .Select(grp => grp.ToList())
+                   .ToList();
+
+                Card winningCard = null;
+                int winningGrpnum = 0;
+                int currentwinningGrpnum = 0;
+
+                foreach (var grpItem in grpPage)
+                {
+                    currentwinningGrpnum = grpItem.Count;
+
+                    if (winningGrpnum < currentwinningGrpnum)
+                    {
+                        winningGrpnum = currentwinningGrpnum;
+                        winningCard = grpItem[0].card;
+                    }
+
+                }
+
+                if (winningCard != null)
+                {
+                     GridHelper.SwapCards(item[0].Page.Card, winningCard); 
+                }
+
             }
-
-
-
         }
     }
 }

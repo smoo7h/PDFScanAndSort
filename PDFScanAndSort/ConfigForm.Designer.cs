@@ -151,6 +151,7 @@
             this.Controls.Add(this.lstBoxApplications);
             this.Name = "ConfigForm";
             this.Text = "ConfigForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ConfigForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.lstBoxApplications)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridConfig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
