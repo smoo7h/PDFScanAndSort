@@ -269,12 +269,9 @@ namespace PDFScanAndSort
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                //**
-                //need to add right click to enlarge function here 
+                ImageZoom iz = new ImageZoom((sender as PictureBox).Image);
 
-                //  Form2 f2 = new Form2((sender as Card).Image);
-
-                // f2.ShowDialog();
+                iz.ShowDialog();
 
                 return;
             }
