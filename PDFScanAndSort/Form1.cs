@@ -309,6 +309,10 @@ namespace PDFScanAndSort
             {
                 bottomPage.Card = top;
             }
+            else
+            {
+                GridHelper.OrderBottomPanel(this);
+            }
 
            
           
@@ -322,33 +326,6 @@ namespace PDFScanAndSort
 
             top.Parent = (Control)p;
             
-            //currSelectedImg.Image = (sender as Card).Image;
-          //  currSelectedImg = (sender as Card);
-
-         //   (sender as Card).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
-
-//            sender = currentCard;
-
-        
-
-
-
-
-
-
-            //currSelectedImg.Image = (sender as Card).Image;
-            //currSelectedImg = (sender as Card);
-
-            //(sender as Card).Image = (Image)e.Data.GetData(DataFormats.Bitmap);
-
-            //sender = currentCard;
-
-            //Card c = (Card)e.Data.GetData(typeof(Card));
-      
-
-
-          
-
         }
 
         private void cmdConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -379,6 +356,11 @@ namespace PDFScanAndSort
 
         private void cmdClearData_Click(object sender, EventArgs e)
         {
+
+
+            GridHelper.OrderBottomPanel(this);
+
+
             foreach (var item in applications)
             {
                 Console.WriteLine("application name - " + item.Name );

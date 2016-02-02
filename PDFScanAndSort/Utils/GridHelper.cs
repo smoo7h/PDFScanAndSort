@@ -37,7 +37,6 @@ namespace PDFScanAndSort.Utils
             theGrid.DataSource = listDataSource;
         }
 
-
         public static List<Record> GetRecords()
         {
 
@@ -136,6 +135,23 @@ namespace PDFScanAndSort.Utils
                 if (winningCard != null)
                 {
                     GridHelper.SwapCards(item[0].Page.Card, winningCard);
+                }
+            }
+
+        }
+
+        public static void OrderBottomPanel(Form1 form)
+        {
+            Control[] btmControlLst = form.Controls.Find("fLPItemNotFound", true);
+
+
+            FlowLayoutPanel btmPanel = btmControlLst[0] as FlowLayoutPanel;
+
+            foreach (var item in btmPanel.Controls)
+            {
+                if (((item as FlowLayoutPanel).Controls[0] as Card).ImageLocation == null)
+                {
+                    btmPanel.Controls.SetChildIndex((item as Control), btmPanel.Controls.Count - 5);      
                 }
             }
 
