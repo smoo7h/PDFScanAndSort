@@ -143,7 +143,7 @@ namespace PDFScanAndSort.Utils
         public static void OrderBottomPanel(Form1 form)
         {
             Control[] btmControlLst = form.Controls.Find("fLPItemNotFound", true);
-
+            bool check = false;
 
             FlowLayoutPanel btmPanel = btmControlLst[0] as FlowLayoutPanel;
 
@@ -151,9 +151,58 @@ namespace PDFScanAndSort.Utils
             {
                 if (((item as FlowLayoutPanel).Controls[0] as Card).ImageLocation == null)
                 {
-                    btmPanel.Controls.SetChildIndex((item as Control), btmPanel.Controls.Count - 5);      
+                   // btmPanel.Controls.SetChildIndex((item as Control), btmPanel.Controls.Count - 1);      
+                  //  btmPanel.Controls.Remove((item as Control));
+                    check = true;
                 }
             }
+
+          
+
+        }
+
+        public static void RankCards(Form1 form)
+        {
+
+            Ranker ranker = new Ranker(form.applications, form.cards);
+
+            ranker.RankCards();
+
+            var grpApps = ranker.RanksList
+          .GroupBy(u => u.Page)
+          .Select(grp => grp.ToList())
+          .ToList();
+
+            foreach (var item in grpApps)
+            {
+                var grpPage = item
+                   .GroupBy(u => u.card)
+                   .Select(grp => grp.ToList())
+                   .ToList();
+
+                Card winningCard = null;
+                int winningGrpnum = 0;
+                int currentwinningGrpnum = 0;
+
+                foreach (var grpItem in grpPage)
+                {
+                    currentwinningGrpnum = grpItem.Count;
+
+                    if (winningGrpnum < currentwinningGrpnum)
+                    {
+                        winningGrpnum = currentwinningGrpnum;
+                        winningCard = grpItem[0].card;
+                    }
+
+                }
+
+                if (winningCard != null)
+                {
+                    GridHelper.SwapCards(item[0].Page.Card, winningCard);
+                }
+
+            }
+
 
         }
 
