@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>iTextSharp</id>
+    <version>5.5.8</version>
+    <title>iTextSharp</title>
+    <authors>Bruno Lowagie, Paulo Soares</authors>
+    <owners>Bruno Lowagie, Paulo Soares</owners>
+    <licenseUrl>http://www.gnu.org/licenses/agpl.html</licenseUrl>
+    <projectUrl>http://itextpdf.com/</projectUrl>
+    <iconUrl>http://itextpdf.com/img/avatar.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>iText is a PDF library that allows you to CREATE, ADAPT, INSPECT and MAINTAIN documents in the Portable Document Format (PDF):
+ - Generate documents and reports based on data from an XML file or a database
+ - Create maps and books, exploiting numerous interactive features available in PDF
+ - Add bookmarks, page numbers, watermarks, and other features to existing PDF documents
+ - Split or concatenate pages from existing PDF files
+ - Fill out interactive forms
+ - Serve dynamically generated or manipulated PDF documents to a web browser
+
+ iText is used by Java, .NET, Android and GAE developers to enhance their applications with PDF functionality. 
+ iTextSharp is the .NET port.
+
+ Several iText engineers are actively supporting the project on StackOverflow: http://stackoverflow.com/questions/tagged/itext</description>
+    <summary>iTextSharp is a port of the iText open source java library for PDF generation written entirely in C# for the .NET platform.</summary>
+    <releaseNotes />
+    <copyright>Copyright (c) 1999-2015 by Bruno Lowagie and Paulo Soares. All Rights Reserved.</copyright>
+    <language>en-US</language>
+    <tags>itext itextsharp c# .net csharp pdf</tags>
+  </metadata>
+</package>

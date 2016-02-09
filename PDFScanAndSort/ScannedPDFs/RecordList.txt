@@ -118,5 +118,65 @@
       "AUTHORIZED DATE",
       "BUILDING OWNER"
     ]
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "day 2hrs,Block Heater Timer Threshold,on-site Auditor on this date",
+    "Application": "Basic Measures Data Collection Form",
+    "SearchTermStringList": [
+      "day 2hrs",
+      "Block Heater Timer Threshold",
+      "on-site Auditor on this date"
+    ]
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "Handle Location Door,Existing Desired,Refrigerator/Freezer",
+    "Application": "Extended Measres Data Collection Form",
+    "SearchTermStringList": [
+      "Handle Location Door",
+      "Existing Desired",
+      "Refrigerator/Freezer"
+    ]
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "PARTICIPANT CONSENT,after the energy audit,products or devices is subject to all terms and conditions",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "PARTICIPANT CONSENT",
+      "after the energy audit",
+      "products or devices is subject to all terms and conditions"
+    ]
+  },
+  {
+    "PageNumber": 1,
+    "SearchTerms": "including due to conditions in the home,conditions for each energy efficient device and product,to ensure you are eligible to receive",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "including due to conditions in the home",
+      "conditions for each energy efficient device and product",
+      "to ensure you are eligible to receive"
+    ]
+  },
+  {
+    "PageNumber": 2,
+    "SearchTerms": "Freezer Relacement,Hot Water Tank Insulation,Weatherization Measures",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "Freezer Relacement",
+      "Hot Water Tank Insulation",
+      "Weatherization Measures"
+    ]
+  },
+  {
+    "PageNumber": 3,
+    "SearchTerms": "You agree that any newly installed refrigerator,you confirm that any showerheads,All information provided in your Participant Application",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "You agree that any newly installed refrigerator",
+      "you confirm that any showerheads",
+      "All information provided in your Participant Application"
+    ]
   }
 ]

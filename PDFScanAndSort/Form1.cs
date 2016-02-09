@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,26 +34,70 @@ namespace PDFScanAndSort
 
         public List<Models.Application> applications;
 
+        //Current folder directory containing PDFs
+        public string ExcelFolder = "";
+        //Current selected pdf in excel folder directory
+        public int CurrentDocNum = 0;
+        //List of excel sheets
+        public FileInfo[] CurrentDoc;
+
+
+
         public Form1()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
 
-            //initalize list DB view
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\Configs\\";
+            //Check if a config txt file exists, if not create one  
+            if (!Directory.Exists(@path) || !File.Exists(path + "ExcelFolder.txt"))
+            {
+                Directory.CreateDirectory(@path);
+                TextWriter tw = new StreamWriter(path + "ExcelFolder.txt", false);
+                tw.Dispose();
+                tw.Close();
+            }
+            else
+            {
+                //If config txt file exists, read txt file  and set ExcelFolder string with path
+                System.IO.StreamReader myFile = new System.IO.StreamReader(@path + "\\ExcelFolder.txt");
+                ExcelFolder = myFile.ReadLine();
+                if (ExcelFolder != "")
+                {
+                    //Sort excel sheets by date
+                    CurrentDoc = new DirectoryInfo(ExcelFolder)
+                        .GetFiles("*.pdf")
+                        .OrderBy(f => f.CreationTime)
+                        .ToArray();
+                }
+                myFile.Close();
+            }
 
+            //initalize list DB view
             InitializeDataBaseListView();
+
+            cards = new List<Models.Card>();
+            records = GridHelper.GetRecords();
+            applications = new List<Models.Application>();
+            RefreshApplicationGUI();
+
+        
+        }
+
+        public void onLoad()
+        {
+            
+            clearAllCards();
 
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
             applications = new List<Models.Application>();
 
             RefreshApplicationGUI();
-        
         }
 
         private void RefreshApplicationGUI()
         {
-
 
             var groupedAppList = records
             .GroupBy(u => u.Application)
@@ -215,54 +260,71 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
-            string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
+            //string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
             //string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
-            List<Dictionary<int, string>> tiffLocations = PDFFunctions.createTiffFiles(path);
 
-          
-
-            foreach (var card in tiffLocations[0])
+            List<Dictionary<int, string>> tiffLocations = new List<Dictionary<int, string>>();
+            if (ExcelFolder != "")
             {
-                FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
-                pictureContainer.Width = 77;
-                pictureContainer.Height = 90;
-                pictureContainer.AutoSize = false;
-                pictureContainer.AutoScroll = false;
-                pictureContainer.BorderStyle = BorderStyle.FixedSingle;
-                fLPItemNotFound.Controls.Add(pictureContainer);
+                tiffLocations = PDFFunctions.createTiffFiles(@CurrentDoc[CurrentDocNum].DirectoryName + "\\" + CurrentDoc[CurrentDocNum].Name);
 
-                Card picture = new Card();
+                foreach (var card in tiffLocations[0])
+                {
+                    FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+                    pictureContainer.Width = 77;
+                    pictureContainer.Height = 90;
+                    pictureContainer.AutoSize = false;
+                    pictureContainer.AutoScroll = false;
+                    pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+                    fLPItemNotFound.Controls.Add(pictureContainer);
 
-                picture.ImageLocation = @card.Value;
+                    Card picture = new Card();
 
-                picture.PageText = PDFFunctions.imageToText(@card.Value);
+                    picture.ImageLocation = @card.Value;
 
-                //add card to cardlist
-                cards.Add(picture);
+                    //Set low res path
+                    foreach (var lowRes in tiffLocations[1])
+                    {
+                        string highResToLowResPath = picture.ImageLocation.Replace("highRes", "lowRes");
+                        if (lowRes.Value == highResToLowResPath)
+                        {
+                            picture.ImageLocationLR = lowRes.Value;
+                        }
+                    }
 
-                picture.Width = 68;
-                picture.Height = 81;
-                picture.AutoSize = false;
-                picture.Image = Bitmap.FromFile(picture.ImageLocation);
-                picture.BorderStyle = BorderStyle.FixedSingle;
-                picture.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureContainer.Controls.Add(picture);
+                    picture.PageText = PDFFunctions.imageToText(@card.Value);
 
-                //init drang and drop events
-                picture.Visible = true;
-                picture.BorderStyle = BorderStyle.FixedSingle;
-                picture.DragEnter += picture_DragEnter;
-                picture.DragDrop += picture_DragDrop;
-                picture.MouseDown += picture_MouseDown;
+                    //add card to cardlist
+                    cards.Add(picture);
 
-                picture.AllowDrop = true;
+                    picture.Width = 68;
+                    picture.Height = 81;
+                    picture.AutoSize = false;
+                    picture.Image = Bitmap.FromFile(picture.ImageLocation);
+                    picture.BorderStyle = BorderStyle.FixedSingle;
+                    picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                    pictureContainer.Controls.Add(picture);
+
+                    //init drang and drop events
+                    picture.Visible = true;
+                    picture.BorderStyle = BorderStyle.FixedSingle;
+                    picture.DragEnter += picture_DragEnter;
+                    picture.DragDrop += picture_DragDrop;
+                    picture.MouseDown += picture_MouseDown;
+
+                    picture.AllowDrop = true;
+                }
+
+
+                currSelectedImg = new Card();
+                //Swap cards from fLPItemNotFound to proper cards
+                cardSort();
+
             }
-
-
-            currSelectedImg = new Card();
-
-     //       Console.WriteLine(currSelectedImg.Image.ToString());
-
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Please select excel folder path.");
+            }
         }
 
         void picture_MouseDown(object sender, MouseEventArgs e)
@@ -314,9 +376,6 @@ namespace PDFScanAndSort
                 GridHelper.OrderBottomPanel(this);
             }
 
-           
-          
-
             top.Page = bottomPage;
             bottom.Page = topPage;
 
@@ -357,26 +416,48 @@ namespace PDFScanAndSort
         private void cmdClearData_Click(object sender, EventArgs e)
         {
 
-
-            GridHelper.OrderBottomPanel(this);
-
-
-            foreach (var item in applications)
+            if (ExcelFolder != "")
             {
-                Console.WriteLine("application name - " + item.Name );
-
-                foreach (var i in item.Pages)
-                {
-                    Console.WriteLine("Page Number - " + i.Card.Page.PageNumber + "card location - " + i.Card.ImageLocation  );
-                }
-
+                //Iterate to next excel sheet in array
+                CurrentDocNum++;
+                onLoad();
+                //cmdScanDoc.PerformClick();
             }
         }
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
+            //To do: Save to database code
+            createPDFs();
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\Configs\\";
+
+            //Folder browse to write config txt file.
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExcelFolder = folderBrowserDialog1.SelectedPath;
+
+                TextWriter tw = new StreamWriter(path + "\\ExcelFolder.txt", false);
+                tw.WriteLine(ExcelFolder);
+                tw.Dispose();
+                tw.Close();
+            }
+        }
+
+        private void clearAllCards()
+        {
+            xtraScrollableControl1.Controls.Clear();
+
+            fLPItemNotFound.Controls.Clear();
+        }
+
+        private void cardSort()
+        {
             Ranker ranker = new Ranker(this.applications, this.cards);
-            
+
             ranker.RankCards();
 
             var grpApps = ranker.RanksList
@@ -409,10 +490,39 @@ namespace PDFScanAndSort
 
                 if (winningCard != null)
                 {
-                     GridHelper.SwapCards(item[0].Page.Card, winningCard); 
+                    GridHelper.SwapCards(item[0].Page.Card, winningCard);
                 }
 
             }
         }
+
+        private void createPDFs()
+        {
+            
+            foreach (var item in applications)
+            {
+                Console.WriteLine("application name - " + item.Name );
+
+                foreach (var i in item.Pages)
+                {
+                    Console.WriteLine("Page Number - " + i.Card.Page.PageNumber + "card location - " + i.Card.ImageLocation  );
+                }
+
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\FinishedPDFs\\"
+                    + Path.GetFileName(@CurrentDoc[CurrentDocNum].DirectoryName + "\\" + CurrentDoc[CurrentDocNum].Name).Replace(".pdf", "") + "\\";
+                if (!Directory.Exists(@path))
+                {
+                    Directory.CreateDirectory(@path);
+                    item.tiffToPDF(@path + item.Name + ".pdf");
+                }
+                else
+                {
+                    item.tiffToPDF(@path + item.Name + ".pdf");
+                }         
+            }
+
+            GridHelper.OrderBottomPanel(this);
+        }
+
     }
 }

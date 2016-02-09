@@ -19,7 +19,7 @@ namespace PDFScanAndSort.Utils
             string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
             Ghostscript.NET.Rasterizer.GhostscriptRasterizer rasterizer = null;
-            Ghostscript.NET.GhostscriptVersionInfo vesion = new Ghostscript.NET.GhostscriptVersionInfo(new System.Version(0, 0, 0), path + @"\gsdll32.dll", string.Empty, Ghostscript.NET.GhostscriptLicense.GPL);
+            Ghostscript.NET.GhostscriptVersionInfo vesion = new Ghostscript.NET.GhostscriptVersionInfo(new System.Version(0, 0, 0), path + @"\gsdll64.dll", string.Empty, Ghostscript.NET.GhostscriptLicense.GPL);
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
 
@@ -29,14 +29,17 @@ namespace PDFScanAndSort.Utils
 
                 for (int i = 1; i <= rasterizer.PageCount; i++)
                 {
-                    string pageFilePath = Path.Combine(outputPath, Path.GetFileNameWithoutExtension(file) + "-p" + i.ToString() + ".tiff");
+                    string pageFilePath = Path.Combine(outputPath, Path.GetFileNameWithoutExtension(@file).Replace(".pdf", "") + "-p" + i.ToString() + ".tiff");
 
-                    System.Drawing.Image img = rasterizer.GetPage(dpi, dpi, i);
-
-                    img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
-                    dictionary.Add(i, pageFilePath);
+                    using (System.Drawing.Image img = rasterizer.GetPage(dpi, dpi, i))
+                    {
+                        img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
+                        dictionary.Add(i, pageFilePath);
+                    }
+                    
                 }
                 rasterizer.Close();
+                rasterizer.Dispose();
 
                 return dictionary;
             }
@@ -126,7 +129,7 @@ namespace PDFScanAndSort.Utils
             }
             else
             {
-                outputHighRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\highRes\\";
+                outputLowRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\lowRes\\";
             }
 
             //Create high res tiffs

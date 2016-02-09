@@ -13,6 +13,8 @@ namespace PDFScanAndSort.Models
 
         public string ImageLocation { get; set; }
 
+        public string ImageLocationLR { get; set; }
+
         public string PageText { get; set; }
 
         public Page Page { get; set; }
