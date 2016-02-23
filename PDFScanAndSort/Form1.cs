@@ -62,16 +62,12 @@ namespace PDFScanAndSort
                 //If config txt file exists, read txt file  and set ExcelFolder string with path
                 System.IO.StreamReader myFile = new System.IO.StreamReader(@path + "\\ExcelFolder.txt");
                 ExcelFolder = myFile.ReadLine();
-                if (ExcelFolder != "")
-                {
-                    //Sort excel sheets by date
-                    CurrentDoc = new DirectoryInfo(ExcelFolder)
-                        .GetFiles("*.pdf")
-                        .OrderBy(f => f.CreationTime)
-                        .ToArray();
-                }
+             
                 myFile.Close();
             }
+
+
+          
 
             //initalize list DB view
             InitializeDataBaseListView();
@@ -88,7 +84,9 @@ namespace PDFScanAndSort
         {
             
             clearAllCards();
-
+            cards.Clear();
+            records.Clear();
+            applications.Clear();
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
             applications = new List<Models.Application>();
@@ -260,13 +258,24 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
-            //string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
+
+            if (ExcelFolder != "")
+            {
+                //Sort excel sheets by date
+                CurrentDoc = new DirectoryInfo(ExcelFolder)
+                    .GetFiles("*.pdf")
+                    .OrderBy(f => f.CreationTime)
+                    .ToArray();
+            }
+
+
+       //     string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
             //string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
 
             List<Dictionary<int, string>> tiffLocations = new List<Dictionary<int, string>>();
             if (ExcelFolder != "")
             {
-                tiffLocations = PDFFunctions.createTiffFiles(@CurrentDoc[CurrentDocNum].DirectoryName + "\\" + CurrentDoc[CurrentDocNum].Name);
+                tiffLocations = PDFFunctions.createTiffFiles(@CurrentDoc[0].DirectoryName + "\\" + CurrentDoc[0].Name);
 
                 foreach (var card in tiffLocations[0])
                 {
@@ -319,6 +328,7 @@ namespace PDFScanAndSort
                 currSelectedImg = new Card();
                 //Swap cards from fLPItemNotFound to proper cards
                 cardSort();
+                AddBlankCardToBottom();
 
             }
             else
@@ -373,17 +383,52 @@ namespace PDFScanAndSort
             }
             else
             {
-                GridHelper.OrderBottomPanel(this);
+               // GridHelper.OrderBottomPanel(this);
             }
 
             top.Page = bottomPage;
             bottom.Page = topPage;
+
+
+            
 
             object p = bottom.Parent;
 
             bottom.Parent = top.Parent;
 
             top.Parent = (Control)p;
+
+            if (top.Page == null)
+            {
+                if (fLPItemNotFound.Controls.Contains(top.Parent))
+                {
+                  // fLPItemNotFound.Controls.Remove(top.Parent);
+                 //   AddBlankCardToBottom();
+                    
+                }
+               // top.Parent.Parent = null;
+
+                
+                
+            }
+
+            if (bottom.Page == null)
+            {
+
+                if (fLPItemNotFound.Controls.Contains(bottom.Parent))
+                {
+                 //   fLPItemNotFound.Controls.Remove(bottom.Parent);
+                 //   AddBlankCardToBottom();
+
+                }
+
+             //   bottom.Parent.Parent.Parent.Controls.Remove(bottom.Parent);
+             //   AddBlankCardToBottom();
+            }
+
+
+           
+
             
         }
 
@@ -416,19 +461,31 @@ namespace PDFScanAndSort
         private void cmdClearData_Click(object sender, EventArgs e)
         {
 
+            AddBlankCard(this.fLPItemNotFound);
+
+
             if (ExcelFolder != "")
             {
                 //Iterate to next excel sheet in array
-                CurrentDocNum++;
-                onLoad();
+                
+              //  onLoad();
                 //cmdScanDoc.PerformClick();
             }
         }
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
-            //To do: Save to database code
-            createPDFs();
+            RemoveAllBlankCardsFromBottom();
+
+          
+
+            //create pdfs
+           // createPDFs();
+
+            //save the pdf to gibs
+
+            //use the list of applications because they have the PDF location attached 
+
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -447,8 +504,165 @@ namespace PDFScanAndSort
             }
         }
 
+        public void AddBlankCardToBottom()
+        {
+
+            int check = 0;
+            if (fLPItemNotFound.Controls.Count == 0)
+            {
+                check++;
+            }
+            else
+            {
+                foreach (Control control in fLPItemNotFound.Controls)
+                {
+                    foreach (var item in control.Controls)
+                    {
+                        if (item.GetType() == typeof(Card))
+                        {
+                            if ((item as Card).Page == null)
+                            {
+                                check++;
+                            }
+                           
+                        }
+                    }
+                   
+                   
+                  
+                }
+
+            }
+
+            if (check == 1)
+            {
+                fLPItemNotFound.SuspendLayout();
+
+
+
+                FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+                pictureContainer.Width = 77;
+                pictureContainer.Height = 90;
+                pictureContainer.AutoSize = false;
+                pictureContainer.AutoScroll = false;
+                pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+            
+
+                Card picture = new Card();
+
+                picture.ImageLocation = null;
+
+                //add card to cardlist
+                cards.Add(picture);
+
+                picture.Width = 68;
+                picture.Height = 81;
+                picture.AutoSize = false;
+
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureContainer.Controls.Add(picture);
+
+                //init drang and drop events
+                picture.Visible = true;
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.DragEnter += picture_DragEnter;
+                picture.DragDrop += picture_DragDrop;
+                picture.MouseDown += picture_MouseDown;
+                
+
+                picture.AllowDrop = true;
+
+                fLPItemNotFound.Controls.Add(pictureContainer);
+
+                fLPItemNotFound.ResumeLayout(true);
+              
+            }
+
+        }
+
+        public void AddBlankCard(FlowLayoutPanel fp)
+        {
+            fp.SuspendLayout();
+
+
+
+            FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+            pictureContainer.Width = 77;
+            pictureContainer.Height = 90;
+            pictureContainer.AutoSize = false;
+            pictureContainer.AutoScroll = false;
+            pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+
+
+            Card picture = new Card();
+
+            picture.ImageLocation = null;
+
+            //add card to cardlist
+            cards.Add(picture);
+
+            picture.Width = 68;
+            picture.Height = 81;
+            picture.AutoSize = false;
+
+            picture.BorderStyle = BorderStyle.FixedSingle;
+            picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureContainer.Controls.Add(picture);
+
+            //init drang and drop events
+            picture.Visible = true;
+            picture.BorderStyle = BorderStyle.FixedSingle;
+            picture.DragEnter += picture_DragEnter;
+            picture.DragDrop += picture_DragDrop;
+            picture.MouseDown += picture_MouseDown;
+
+
+            picture.AllowDrop = true;
+
+            fp.Controls.Add(pictureContainer);
+
+            fp.ResumeLayout(true);
+              
+
+        }
+
+        public void RemoveAllBlankCardsFromBottom()
+        {
+
+            foreach (Control control in fLPItemNotFound.Controls)
+            {
+                 if (control.Controls[0].GetType() == typeof(Card))
+                 {
+                        if ((control.Controls[0] as Card).Page == null)
+                        {
+                            fLPItemNotFound.Controls.Remove(control);
+                
+                        }
+                       
+                    }
+
+              
+                foreach (var item in control.Controls)
+                {
+                   
+                }
+                //if ((control.Controls[0] as Card).ImageLocation == null)
+                //{
+
+                   
+                //}
+
+            }
+        }
+
         private void clearAllCards()
         {
+            foreach (var item in cards)
+            {
+                item.Dispose();
+            }
+
             xtraScrollableControl1.Controls.Clear();
 
             fLPItemNotFound.Controls.Clear();
@@ -498,31 +712,53 @@ namespace PDFScanAndSort
 
         private void createPDFs()
         {
-            
+
+            applications.RemoveAll(item => item.Pages[0].Card.ImageLocation == null);
+
+
             foreach (var item in applications)
             {
                 Console.WriteLine("application name - " + item.Name );
 
-                foreach (var i in item.Pages)
-                {
-                    Console.WriteLine("Page Number - " + i.Card.Page.PageNumber + "card location - " + i.Card.ImageLocation  );
-                }
-
+           
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\FinishedPDFs\\"
-                    + Path.GetFileName(@CurrentDoc[CurrentDocNum].DirectoryName + "\\" + CurrentDoc[CurrentDocNum].Name).Replace(".pdf", "") + "\\";
+                    + Path.GetFileName(@CurrentDoc[0].DirectoryName + "\\" + CurrentDoc[0].Name).Replace(".pdf", "") + "\\";
+
+                string appName = @path + item.Name + ".pdf";
+
+
                 if (!Directory.Exists(@path))
                 {
                     Directory.CreateDirectory(@path);
-                    item.tiffToPDF(@path + item.Name + ".pdf");
+                    item.tiffToPDF(appName);
                 }
                 else
                 {
-                    item.tiffToPDF(@path + item.Name + ".pdf");
-                }         
+                    item.tiffToPDF(appName);
+                }
+
+
+                item.PDFLocation = appName;
+
             }
 
-            GridHelper.OrderBottomPanel(this);
+     //       GridHelper.OrderBottomPanel(this);
         }
+
+        private void fLPItemNotFound_ControlAdded(object sender, ControlEventArgs e)
+        {
+        
+
+        }
+
+        private void fLPItemNotFound_ControlRemoved(object sender, ControlEventArgs e)
+        {
+
+        
+        }
+
+      
+        
 
     }
 }

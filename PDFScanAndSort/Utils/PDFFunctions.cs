@@ -16,6 +16,8 @@ namespace PDFScanAndSort.Utils
     {
         public static Dictionary<int, string> PDFToImage(string file, string outputPath, int dpi)
         {
+
+
             string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
             Ghostscript.NET.Rasterizer.GhostscriptRasterizer rasterizer = null;
@@ -33,8 +35,23 @@ namespace PDFScanAndSort.Utils
 
                     using (System.Drawing.Image img = rasterizer.GetPage(dpi, dpi, i))
                     {
-                        img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
-                        dictionary.Add(i, pageFilePath);
+                        
+                            if (File.Exists(pageFilePath))
+                            {
+                              
+
+                                //img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
+                                dictionary.Add(i, pageFilePath);
+
+                            }
+                            else
+                            {
+                                img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
+                                dictionary.Add(i, pageFilePath);
+                            }
+                       
+                            
+                      
                     }
                     
                 }

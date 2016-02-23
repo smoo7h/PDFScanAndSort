@@ -33,6 +33,7 @@
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.cmdConfig = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -67,7 +68,6 @@
             this.cmdScanDoc = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.cmdClearData = new DevExpress.XtraEditors.SimpleButton();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -139,6 +139,13 @@
             this.cmdConfig.Id = 1;
             this.cmdConfig.Name = "cmdConfig";
             this.cmdConfig.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.cmdConfig_ItemClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Configure Excel Folder";
+            this.barButtonItem1.Id = 3;
+            this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -403,6 +410,8 @@
             this.fLPItemNotFound.Size = new System.Drawing.Size(755, 113);
             this.fLPItemNotFound.TabIndex = 0;
             this.fLPItemNotFound.WrapContents = false;
+            this.fLPItemNotFound.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.fLPItemNotFound_ControlAdded);
+            this.fLPItemNotFound.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.fLPItemNotFound_ControlRemoved);
             // 
             // cmdImport
             // 
@@ -444,12 +453,10 @@
             this.cmdClearData.Text = "Clear Workspace";
             this.cmdClearData.Click += new System.EventHandler(this.cmdClearData_Click);
             // 
-            // barButtonItem1
+            // barButtonItem3
             // 
-            this.barButtonItem1.Caption = "Configure Excel Folder";
-            this.barButtonItem1.Id = 3;
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.barButtonItem3.Id = -1;
+            this.barButtonItem3.Name = "barButtonItem3";
             // 
             // Form1
             // 

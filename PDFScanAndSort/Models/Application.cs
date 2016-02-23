@@ -56,7 +56,11 @@ namespace PDFScanAndSort.Models
                     } 
                 }
             }
-            document.Close(); 
+
+
+            document.Close();
+            document.Dispose();
+            writer.Dispose();
         }
 
 

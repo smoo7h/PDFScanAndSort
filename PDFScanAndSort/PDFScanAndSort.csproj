@@ -206,6 +206,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gsdll64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RecordList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

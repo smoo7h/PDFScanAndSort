@@ -93,9 +93,29 @@ namespace PDFScanAndSort.Utils
 
             object p = bottom.Parent;
 
+
+
+
             bottom.Parent = top.Parent;
 
             top.Parent = (Control)p;
+
+
+            if (top.Page == null && top.ImageLocation == null)
+            {
+                top.Parent.Parent = null;
+                top.Parent = null;
+                top = null;
+            }
+
+            if (bottom.Page == null && bottom.ImageLocation == null)
+            {
+                bottom.Parent.Parent = null;
+                bottom.Parent = null;
+                bottom = null;
+            }
+
+
         }
 
         public static void UpdateRankList(List<PDFScanAndSort.Models.Application> apps, List<Card> cards)
@@ -160,6 +180,8 @@ namespace PDFScanAndSort.Utils
           
 
         }
+
+       
 
         public static void RankCards(Form1 form)
         {
