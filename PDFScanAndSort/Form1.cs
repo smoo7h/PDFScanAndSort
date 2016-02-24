@@ -70,7 +70,7 @@ namespace PDFScanAndSort
           
 
             //initalize list DB view
-            InitializeDataBaseListView();
+         //   InitializeDataBaseListView();
 
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
@@ -186,6 +186,30 @@ namespace PDFScanAndSort
 
 
                 }
+
+                //add the add and subtract buttons 
+
+                FlowLayoutPanel btnContainer = new FlowLayoutPanel();
+                btnContainer.Width = 42;
+                btnContainer.Height = 111;
+                btnContainer.AutoSize = false;
+                btnContainer.AutoScroll = false;
+                btnContainer.BorderStyle = BorderStyle.FixedSingle;
+
+                SimpleButton newbtn = new SimpleButton();
+                newbtn.Name = "Add Page";
+                newbtn.Width = 10;
+
+
+
+
+                SimpleButton removebtn = new SimpleButton();
+                removebtn.Name = "Remove Page";
+                removebtn.Width = 10;
+
+                btnContainer.Controls.Add(newbtn);
+                btnContainer.Controls.Add(removebtn);
+                panelLong.Controls.Add(btnContainer);
 
 
             }
@@ -325,10 +349,13 @@ namespace PDFScanAndSort
                 }
 
 
+
                 currSelectedImg = new Card();
                 //Swap cards from fLPItemNotFound to proper cards
                 cardSort();
-                AddBlankCardToBottom();
+
+
+                RemoveAllFromBottomAndAddBlank();
 
             }
             else
@@ -381,16 +408,10 @@ namespace PDFScanAndSort
             {
                 bottomPage.Card = top;
             }
-            else
-            {
-               // GridHelper.OrderBottomPanel(this);
-            }
+
 
             top.Page = bottomPage;
             bottom.Page = topPage;
-
-
-            
 
             object p = bottom.Parent;
 
@@ -398,38 +419,8 @@ namespace PDFScanAndSort
 
             top.Parent = (Control)p;
 
-            if (top.Page == null)
-            {
-                if (fLPItemNotFound.Controls.Contains(top.Parent))
-                {
-                  // fLPItemNotFound.Controls.Remove(top.Parent);
-                 //   AddBlankCardToBottom();
-                    
-                }
-               // top.Parent.Parent = null;
-
-                
-                
-            }
-
-            if (bottom.Page == null)
-            {
-
-                if (fLPItemNotFound.Controls.Contains(bottom.Parent))
-                {
-                 //   fLPItemNotFound.Controls.Remove(bottom.Parent);
-                 //   AddBlankCardToBottom();
-
-                }
-
-             //   bottom.Parent.Parent.Parent.Controls.Remove(bottom.Parent);
-             //   AddBlankCardToBottom();
-            }
-
-
-           
-
-            
+            RemoveAllFromBottomAndAddBlank();
+          
         }
 
         private void cmdConfig_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -630,30 +621,30 @@ namespace PDFScanAndSort
         public void RemoveAllBlankCardsFromBottom()
         {
 
+            List<Card> cardList = new List<Card>();
+
             foreach (Control control in fLPItemNotFound.Controls)
             {
-                 if (control.Controls[0].GetType() == typeof(Card))
-                 {
-                        if ((control.Controls[0] as Card).Page == null)
-                        {
-                            fLPItemNotFound.Controls.Remove(control);
-                
-                        }
-                       
-                    }
-
-              
                 foreach (var item in control.Controls)
                 {
-                   
+                    if (item.GetType() == typeof(Card) && (item as Card).ImageLocation == null)
+                    {
+                        cardList.Add(item as Card);
+                    }
                 }
-                //if ((control.Controls[0] as Card).ImageLocation == null)
-                //{
-
-                   
-                //}
-
             }
+
+            foreach (Card c in cardList)
+            {
+                fLPItemNotFound.Controls.Remove(c.Parent);
+            }
+
+        }
+
+        public void RemoveAllFromBottomAndAddBlank()
+        {
+            RemoveAllBlankCardsFromBottom();
+            AddBlankCard(this.fLPItemNotFound);
         }
 
         private void clearAllCards()
@@ -745,18 +736,7 @@ namespace PDFScanAndSort
      //       GridHelper.OrderBottomPanel(this);
         }
 
-        private void fLPItemNotFound_ControlAdded(object sender, ControlEventArgs e)
-        {
-        
-
-        }
-
-        private void fLPItemNotFound_ControlRemoved(object sender, ControlEventArgs e)
-        {
-
-        
-        }
-
+     
       
         
 

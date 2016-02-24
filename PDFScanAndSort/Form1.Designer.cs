@@ -410,8 +410,7 @@
             this.fLPItemNotFound.Size = new System.Drawing.Size(755, 113);
             this.fLPItemNotFound.TabIndex = 0;
             this.fLPItemNotFound.WrapContents = false;
-            this.fLPItemNotFound.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.fLPItemNotFound_ControlAdded);
-            this.fLPItemNotFound.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.fLPItemNotFound_ControlRemoved);
+           
             // 
             // cmdImport
             // 
