@@ -160,14 +160,6 @@ namespace PDFScanAndSort
                     picture.AllowDrop = true;
 
 
-                    //CheckBox checkbox = new CheckBox();
-                    //checkbox.AutoSize = false;
-                    //checkbox.Width = 76;
-                    //checkbox.Height = 22;
-                    //checkbox.Text = "Page: " + i;
-                    //pictureContainer.Controls.Add(checkbox);
-
-
                     Page page = new Page();
                     page.Card = picture;
                     page.SearchStrings = rr.SearchTermStringList;
@@ -195,17 +187,22 @@ namespace PDFScanAndSort
                 btnContainer.AutoSize = false;
                 btnContainer.AutoScroll = false;
                 btnContainer.BorderStyle = BorderStyle.FixedSingle;
+                btnContainer.WrapContents = true;
 
                 SimpleButton newbtn = new SimpleButton();
-                newbtn.Name = "Add Page";
-                newbtn.Width = 10;
+                newbtn.Text = "+";
+                newbtn.Width = 33;
+                newbtn.Height = 48;
+                newbtn.Click += newbtn_Click;
 
 
 
+                SimpleButton removebtn = new SimpleButton();   
+                removebtn.Text= "-";
+                removebtn.Width = 33;
+                removebtn.Height = 48;
+                removebtn.Click += removebtn_Click;
 
-                SimpleButton removebtn = new SimpleButton();
-                removebtn.Name = "Remove Page";
-                removebtn.Width = 10;
 
                 btnContainer.Controls.Add(newbtn);
                 btnContainer.Controls.Add(removebtn);
@@ -213,6 +210,32 @@ namespace PDFScanAndSort
 
 
             }
+        }
+
+        void removebtn_Click(object sender, EventArgs e)
+        {
+            RemoveCard(((sender as SimpleButton).Parent.Parent as FlowLayoutPanel));
+
+           // ((sender as SimpleButton).Parent.Parent as FlowLayoutPanel).Controls.RemoveAt(((sender as SimpleButton).Parent.Parent as FlowLayoutPanel).Controls.Count - 2);
+
+        }
+
+        void newbtn_Click(object sender, EventArgs e)
+        {
+            //add a new page and card to the application
+            Card newcard = AddBlankCard(((sender as SimpleButton).Parent.Parent as FlowLayoutPanel));
+            newcard.Height = 75;
+            newcard.Width = 70;
+            newcard.Page = new Page();
+            newcard.Page.Card = newcard;
+            newcard.Page.Application  = ((newcard.Parent.Parent as FlowLayoutPanel).Controls[0].Controls[0] as Card).Page.Application;
+            newcard.Page.Application.Pages.Add(newcard.Page);
+            newcard.Parent.Parent.Controls.SetChildIndex(newcard.Parent, newcard.Parent.Parent.Controls.Count - 2);
+            (newcard.Parent as FlowLayoutPanel).Height = 111;
+
+            
+
+
         }
 
         void Form1_FocusedRowChanged(object sender, FocusedRowChangedEventArgs e)
@@ -466,12 +489,10 @@ namespace PDFScanAndSort
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
-            RemoveAllBlankCardsFromBottom();
-
-          
+         
 
             //create pdfs
-           // createPDFs();
+            createPDFs();
 
             //save the pdf to gibs
 
@@ -572,7 +593,26 @@ namespace PDFScanAndSort
 
         }
 
-        public void AddBlankCard(FlowLayoutPanel fp)
+        public void RemoveCard(FlowLayoutPanel panel)
+        {
+
+            Card card = panel.Controls[panel.Controls.Count - 2].Controls[0] as Card;
+
+
+            panel.Controls.RemoveAt(panel.Controls.Count - 2);
+
+            //remove page 
+            Page p = card.Page;
+            PDFScanAndSort.Models.Application app = card.Page.Application;
+
+            app.Pages.Remove(p);
+            p.Application = null;
+            card.Page = null;
+            card.Dispose();
+
+        }
+
+        public Card AddBlankCard(FlowLayoutPanel fp)
         {
             fp.SuspendLayout();
 
@@ -614,7 +654,9 @@ namespace PDFScanAndSort
             fp.Controls.Add(pictureContainer);
 
             fp.ResumeLayout(true);
-              
+
+
+            return picture;
 
         }
 
