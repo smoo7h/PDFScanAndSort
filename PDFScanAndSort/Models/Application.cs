@@ -23,6 +23,8 @@ namespace PDFScanAndSort.Models
 
         public string PDFLocation { get; set; }
 
+        public int NumberOfPages { get; set; }
+
       //  public List<Card> Cards { get; set; }
 
 

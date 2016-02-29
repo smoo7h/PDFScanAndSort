@@ -10,6 +10,7 @@ using PDFScanAndSort.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -26,6 +27,7 @@ namespace PDFScanAndSort
 
         public Card currentCard;
 
+        public string CurrentFullPDF;
      //   public Card currSelectedCard;
 
         public List<Models.Card> cards;
@@ -35,7 +37,7 @@ namespace PDFScanAndSort
         public List<Models.Application> applications;
 
         //Current folder directory containing PDFs
-        public string ExcelFolder = "";
+        public string PDFFolder = "";
         //Current selected pdf in excel folder directory
         public int CurrentDocNum = 0;
         //List of excel sheets
@@ -50,27 +52,35 @@ namespace PDFScanAndSort
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\Configs\\";
             //Check if a config txt file exists, if not create one  
-            if (!Directory.Exists(@path) || !File.Exists(path + "ExcelFolder.txt"))
-            {
-                Directory.CreateDirectory(@path);
-                TextWriter tw = new StreamWriter(path + "ExcelFolder.txt", false);
-                tw.Dispose();
-                tw.Close();
-            }
-            else
-            {
-                //If config txt file exists, read txt file  and set ExcelFolder string with path
-                System.IO.StreamReader myFile = new System.IO.StreamReader(@path + "\\ExcelFolder.txt");
-                ExcelFolder = myFile.ReadLine();
+            //if (!Directory.Exists(@path) || !File.Exists(path + "PDFFolder.txt"))
+            //{
+            //    Directory.CreateDirectory(@path);
+            //    TextWriter tw = new StreamWriter(path + "PDFFolder.txt", false);
+            //    tw.Dispose();
+            //    tw.Close();
+            //}
+            //else
+            //{
+            //    //If config txt file exists, read txt file  and set PDFFolder string with path
+            //    System.IO.StreamReader myFile = new System.IO.StreamReader(@path + "\\PDFFolder.txt");
+            //    PDFFolder = myFile.ReadLine();
              
-                myFile.Close();
-            }
+            //    myFile.Close();
+            //}
 
-
+            PDFFolder = Utils.ConfigSettings.ReadSetting("PDFFolder");
           
 
             //initalize list DB view
-         //   InitializeDataBaseListView();
+            try
+            {
+                InitializeDataBaseListView();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Cannot connect to GIBS " + ex.Message );
+            }
 
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
@@ -90,6 +100,15 @@ namespace PDFScanAndSort
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
             applications = new List<Models.Application>();
+         
+            //clear txt boxes
+            foreach (Control c in xtraScrollableControl4.Controls)
+            {
+                if (c.GetType() == typeof(TextEdit))
+                {
+                    c.Text = "";
+                }
+            }
 
             RefreshApplicationGUI();
         }
@@ -97,6 +116,16 @@ namespace PDFScanAndSort
         private void RefreshApplicationGUI()
         {
 
+            //add new application button
+
+            SimpleButton cmdAddApplication = new SimpleButton();
+            cmdAddApplication.Text = "Add New Application";
+            cmdAddApplication.Dock = DockStyle.Bottom;
+            cmdAddApplication.Click += cmdAddApplication_Click;
+
+            xtraScrollableControl1.Controls.Add(cmdAddApplication);
+
+            //create apps in the UI
             var groupedAppList = records
             .GroupBy(u => u.Application)
             .Select(grp => grp.ToList())
@@ -210,6 +239,129 @@ namespace PDFScanAndSort
 
 
             }
+
+
+        }
+
+        void cmdAddApplication_Click(object sender, EventArgs e)
+        {
+            NewAppWizard wizard = new NewAppWizard();
+            wizard.ShowDialog();
+            PDFScanAndSort.Models.Application app = wizard.Application;
+            wizard.Dispose();
+
+
+
+
+            GroupControl gc = new GroupControl();
+            gc.Text = app.Name;
+            gc.Dock = DockStyle.Top;
+            gc.Width = 446;
+            gc.Height = 165;
+            xtraScrollableControl1.Controls.Add(gc);
+            xtraScrollableControl1.Controls.SetChildIndex(gc, 0);
+
+
+            FlowLayoutPanel panelLong = new FlowLayoutPanel();
+            panelLong.Width = 442;
+            panelLong.Height = 142;
+            panelLong.AutoSize = false;
+            panelLong.AutoScroll = true;
+            panelLong.WrapContents = false;
+            panelLong.Dock = DockStyle.Top;
+            panelLong.HorizontalScroll.Value = 0;
+            gc.Controls.Add(panelLong);
+            //create application class
+
+
+            app.Name = app.Name;
+            applications.Add(app);
+
+            for (int i = 0; i < app.NumberOfPages; i++)
+            {
+
+
+
+                FlowLayoutPanel pictureContainer = new FlowLayoutPanel();
+                pictureContainer.Width = 85;
+                pictureContainer.Height = 111;
+                pictureContainer.AutoSize = false;
+                pictureContainer.AutoScroll = false;
+                pictureContainer.BorderStyle = BorderStyle.FixedSingle;
+                panelLong.Controls.Add(pictureContainer);
+
+                Card picture = new Card();
+                picture.Width = 76;
+                picture.Height = 75;
+                picture.AutoSize = false;
+                //picture.Image = Bitmap.FromFile(item);
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureContainer.Controls.Add(picture);
+
+
+
+                picture.Visible = true;
+                picture.BorderStyle = BorderStyle.FixedSingle;
+                picture.DragEnter += picture_DragEnter;
+                picture.DragDrop += picture_DragDrop;
+                picture.MouseDown += picture_MouseDown;
+
+                picture.AllowDrop = true;
+
+
+                Page page = new Page();
+                page.Card = picture;
+                
+                picture.Page = page;
+                picture.Page.PageNumber = i;
+                cards.Add(picture);
+
+                //  card.PageNumber = i;
+                page.Application = app;
+                // page.PictureBox = picture;
+                app.Pages.Add(page);
+
+              
+
+            }
+
+
+            
+
+            //add the add and subtract buttons 
+
+            FlowLayoutPanel btnContainer = new FlowLayoutPanel();
+            btnContainer.Width = 42;
+            btnContainer.Height = 111;
+            btnContainer.AutoSize = false;
+            btnContainer.AutoScroll = false;
+            btnContainer.BorderStyle = BorderStyle.FixedSingle;
+            btnContainer.WrapContents = true;
+
+            SimpleButton newbtn = new SimpleButton();
+            newbtn.Text = "+";
+            newbtn.Width = 33;
+            newbtn.Height = 48;
+            newbtn.Click += newbtn_Click;
+
+
+
+            SimpleButton removebtn = new SimpleButton();
+            removebtn.Text = "-";
+            removebtn.Width = 33;
+            removebtn.Height = 48;
+            removebtn.Click += removebtn_Click;
+
+
+           
+            btnContainer.Controls.Add(newbtn);
+            btnContainer.Controls.Add(removebtn);
+            panelLong.Controls.Add(btnContainer);
+
+
+
+            
         }
 
         void removebtn_Click(object sender, EventArgs e)
@@ -263,41 +415,44 @@ namespace PDFScanAndSort
             XPODataHelper datahelper = new XPODataHelper();
 
             IObjectSpace space = datahelper.Connect();
+            
 
-            // Create a Session object. 
-            Session session1 = ((XPObjectSpace)space).Session;
-            // Create an XPClassInfo object corresponding to the Person class. 
-            XPClassInfo classInfo = session1.GetClassInfo(typeof(GIBS.Module.Models.Programs.HAP.HAPApplication));
-            // Create an XPServerCollectionSource object. 
-            XPServerCollectionSource xpServerCollectionSource1 = new XPServerCollectionSource(session1, classInfo);
+                // Create a Session object. 
+                Session session1 = ((XPObjectSpace)space).Session;
+                // Create an XPClassInfo object corresponding to the Person class. 
+                XPClassInfo classInfo = session1.GetClassInfo(typeof(GIBS.Module.Models.Programs.HAP.HAPApplication));
+                // Create an XPServerCollectionSource object. 
+                XPServerCollectionSource xpServerCollectionSource1 = new XPServerCollectionSource(session1, classInfo);
 
-            gridControl1.Dock = DockStyle.Fill;
+                gridControl1.Dock = DockStyle.Fill;
 
-            // Bind the grid control to the data source. 
-            gridControl1.DataSource = xpServerCollectionSource1;
+                // Bind the grid control to the data source. 
+                gridControl1.DataSource = xpServerCollectionSource1;
 
-            gridControl1.MainView.HideEditor();
+                gridControl1.MainView.HideEditor();
 
-            //clear the columns
-            ((ColumnView)gridControl1.Views[0]).Columns.Clear();
+                //clear the columns
+                ((ColumnView)gridControl1.Views[0]).Columns.Clear();
 
-            //add searchable properties to grid
-            ((ColumnView)gridControl1.Views[0]).Columns.AddVisible("FullName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FirstName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.LastName");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FAST");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.StreetAddress1");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.City.Name");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("LDC.Name");
-            ((ColumnView)gridControl1.Views[0]).Columns.AddField("ApplicationType");
-            //((ColumnView)gridControl1.Views[0]).Columns.AddField("SocialHousing");
-           
-            //show the find panel
-            ((ColumnView)gridControl1.Views[0]).ShowFindPanel();
-            ((ColumnView)gridControl1.Views[0]).OptionsFind.AlwaysVisible = true;
+                //add searchable properties to grid
+                ((ColumnView)gridControl1.Views[0]).Columns.AddVisible("FullName");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FirstName");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.LastName");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FAST");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.StreetAddress1");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.City.Name");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("LDC.Name");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("ApplicationType");
+                //((ColumnView)gridControl1.Views[0]).Columns.AddField("SocialHousing");
 
-            //add event listener for when row changes
-            ((ColumnView)gridControl1.Views[0]).FocusedRowChanged += Form1_FocusedRowChanged;
+                //show the find panel
+                ((ColumnView)gridControl1.Views[0]).ShowFindPanel();
+                ((ColumnView)gridControl1.Views[0]).OptionsFind.AlwaysVisible = true;
+
+                //add event listener for when row changes
+                ((ColumnView)gridControl1.Views[0]).FocusedRowChanged += Form1_FocusedRowChanged;
+
+            
      
 
 
@@ -306,21 +461,19 @@ namespace PDFScanAndSort
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
 
-            if (ExcelFolder != "")
-            {
-                //Sort excel sheets by date
-                CurrentDoc = new DirectoryInfo(ExcelFolder)
+                //Sort pdf files by date
+                CurrentDoc = new DirectoryInfo(PDFFolder)
                     .GetFiles("*.pdf")
                     .OrderBy(f => f.CreationTime)
                     .ToArray();
-            }
 
 
+                CurrentFullPDF = CurrentDoc[0].FullName;
        //     string path = @"P:\Division-Office Admin-HR-IT-LEGAL-SECURITY-SAFETY\IT\copier1@greensaver.org_20160112_150327.pdf";
             //string path = @"C:\Users\matt\Documents\greensaver\greensaver\wp-content\uploads\2015\09\BlowerDoorWeb.pdf";
 
             List<Dictionary<int, string>> tiffLocations = new List<Dictionary<int, string>>();
-            if (ExcelFolder != "")
+            if (PDFFolder != "")
             {
                 tiffLocations = PDFFunctions.createTiffFiles(@CurrentDoc[0].DirectoryName + "\\" + CurrentDoc[0].Name);
 
@@ -474,45 +627,43 @@ namespace PDFScanAndSort
 
         private void cmdClearData_Click(object sender, EventArgs e)
         {
-
-            AddBlankCard(this.fLPItemNotFound);
-
-
-            if (ExcelFolder != "")
-            {
                 //Iterate to next excel sheet in array
                 
-              //  onLoad();
+                onLoad();
                 //cmdScanDoc.PerformClick();
-            }
+            
         }
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
-         
 
             //create pdfs
             createPDFs();
 
             //save the pdf to gibs
+            savePDFToFolder();
+            
+            //attach PDF file paths to GIBS
 
-            //use the list of applications because they have the PDF location attached 
+          
+            /////Cleanup 
+            //delete local PDF file and TIFF files 
+
+
+            //clear form
+            onLoad();
+
 
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\Configs\\";
+            MessageBox.Show("Current Directory " + Utils.ConfigSettings.ReadSetting("PDFFolder"));
 
             //Folder browse to write config txt file.
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
-                ExcelFolder = folderBrowserDialog1.SelectedPath;
-
-                TextWriter tw = new StreamWriter(path + "\\ExcelFolder.txt", false);
-                tw.WriteLine(ExcelFolder);
-                tw.Dispose();
-                tw.Close();
+                Utils.ConfigSettings.AddUpdateAppSettings("PDFFolder", folderBrowserDialog1.SelectedPath);
             }
         }
 
@@ -751,7 +902,6 @@ namespace PDFScanAndSort
 
             foreach (var item in applications)
             {
-                Console.WriteLine("application name - " + item.Name );
 
            
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\FinishedPDFs\\"
@@ -778,9 +928,62 @@ namespace PDFScanAndSort
      //       GridHelper.OrderBottomPanel(this);
         }
 
-     
-      
-        
+        private void savePDFToFolder()
+        {
+            string pdfOutFolderLocaton = Utils.ConfigSettings.ReadSetting("DestinationFolder");
+            string userDestFolder = "";
+
+            if (!Directory.Exists(pdfOutFolderLocaton))
+            {
+                MessageBox.Show("directory " + pdfOutFolderLocaton + " Does not exist please create it");
+                return;
+            }
+
+            string LDCDir = pdfOutFolderLocaton + "\\" + this.txtLDC.Text;
+
+            //check if LDC folder exists 
+            if (!Directory.Exists(LDCDir))
+            {
+                //create it if it doesnt exist 
+                Directory.CreateDirectory(LDCDir);
+            }
+            
+            //check and create user folder 
+            if (!Directory.Exists(LDCDir +"\\" +txtFastNumber.Text))
+            {
+                //create it if it doesnt exist 
+                Directory.CreateDirectory(LDCDir + "\\" +txtFastNumber.Text);
+            }
+            //set fodler to variable
+            userDestFolder = LDCDir + "\\"+txtFastNumber.Text;
+            //filter the app list 
+            applications.RemoveAll(item => item.Pages[0].Card.ImageLocation == null);
+
+            //save origional untouched PDF to folder
+            File.Copy(CurrentFullPDF, userDestFolder +"\\" +txtFastNumber.Text +"rawscan.pdf",true);
+
+            foreach (var item in applications)
+            {
+                //save PDF to director
+                File.Copy(item.PDFLocation, userDestFolder + "\\"  + Path.GetFileName(item.PDFLocation), true);
+            }
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //update destination folder 
+
+
+            MessageBox.Show("Current Directory " + Utils.ConfigSettings.ReadSetting("DestinationFolder"));
+
+            //Folder browse to write config txt file.
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Utils.ConfigSettings.AddUpdateAppSettings("DestinationFolder", folderBrowserDialog1.SelectedPath);
+            }
+
+
+        }
 
     }
 }
