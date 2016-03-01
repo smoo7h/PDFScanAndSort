@@ -90,7 +90,12 @@ namespace PDFScanAndSort
         
         }
 
-        public void onLoad()
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.AllowDrop = true;
+        }
+
+        public void resetControls()
         {
             
             clearAllCards();
@@ -620,16 +625,13 @@ namespace PDFScanAndSort
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            this.AllowDrop = true;
-        }
+
 
         private void cmdClearData_Click(object sender, EventArgs e)
         {
                 //Iterate to next excel sheet in array
                 
-                onLoad();
+                resetControls();
                 //cmdScanDoc.PerformClick();
             
         }
@@ -651,7 +653,7 @@ namespace PDFScanAndSort
 
 
             //clear form
-            onLoad();
+            resetControls();
 
 
         }

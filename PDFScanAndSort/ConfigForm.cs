@@ -25,7 +25,7 @@ namespace PDFScanAndSort
 
             r = GridHelper.GetRecords();
 
-
+            
          
             GridHelper.AddRecords(r, this.gridConfig);
 
