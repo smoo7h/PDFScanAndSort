@@ -474,6 +474,23 @@ namespace PDFScanAndSort
 
         }
 
+        public bool Validate()
+        {
+            foreach (Control item in xtraScrollableControl4.Controls)
+            {
+                if (item.GetType() == typeof(TextEdit))
+                {
+                    if (item.Text == "")
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+
+        }
+
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
 
@@ -670,7 +687,8 @@ namespace PDFScanAndSort
         private void cmdClearData_Click(object sender, EventArgs e)
         {
                 //Iterate to next excel sheet in array
-                
+
+            ClearTempFiles();
                 resetControls();
                 //cmdScanDoc.PerformClick();
             
@@ -678,6 +696,12 @@ namespace PDFScanAndSort
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
+
+            if (Validate() == false)
+            {
+                MessageBox.Show("Please select an application from the list");
+                return;
+            }
 
             //create pdfs
             createPDFs();
@@ -1041,6 +1065,14 @@ namespace PDFScanAndSort
             {
                 Utils.ConfigSettings.AddUpdateAppSettings("PDFFolder", folderBrowserDialog1.SelectedPath);
             }
+        }
+
+        public void ClearTempFiles()
+        {
+
+           string i = Environment.CurrentDirectory;
+
+            Directory.Delete("ScannedPDFs");
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
