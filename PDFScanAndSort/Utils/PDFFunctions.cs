@@ -120,33 +120,35 @@ namespace PDFScanAndSort.Utils
 
             //Get pdf file name for directory name
             string pdfName = Path.GetFileName(pdfPath);
+            //Path to temp
+            string @tempPath = Path.GetTempPath() + "ScannedPDFs\\" + pdfName;
 
             //Create PDF specific directory(in project folder)
-            if (!Directory.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName))
+            if (!Directory.Exists(tempPath + pdfName))
             {
-                Directory.CreateDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName);
+                Directory.CreateDirectory(tempPath + pdfName);
             }
 
             //Create high-res .tiff specific directory and declare high res folder(in pdf folder)
-            if (!Directory.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\highRes\\"))
+            if (!Directory.Exists(tempPath + "\\highRes\\"))
             {
-                Directory.CreateDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\highRes\\");
-                outputHighRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\highRes\\";
+                Directory.CreateDirectory(tempPath + "\\highRes\\");
+                outputHighRes = tempPath + "\\highRes\\";
             }
             else
             {
-                outputHighRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\highRes\\";
+                outputHighRes = tempPath + "\\highRes\\";
             }
 
             //Create low-res .tiff specific directory and declare low res folder(in pdf folder)
-            if (!Directory.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\lowRes\\"))
+            if (!Directory.Exists(tempPath + "\\lowRes\\"))
             {
-                Directory.CreateDirectory(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\lowRes\\");
-                outputLowRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\lowRes\\";
+                Directory.CreateDirectory(tempPath + "\\lowRes\\");
+                outputLowRes = tempPath + "\\lowRes\\";
             }
             else
             {
-                outputLowRes = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\ScannedPDFs\\" + pdfName + "\\lowRes\\";
+                outputLowRes = tempPath + "\\lowRes\\";
             }
 
             //Create high res tiffs
