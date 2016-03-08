@@ -181,7 +181,58 @@ namespace PDFScanAndSort.Utils
 
         }
 
-       
+        public static string GetClientName(List<PDFScanAndSort.Models.Application> apps)
+        {
+            string result = "";
+            int pFrom;
+            int pTo;
+            string[] appsWithNames = { "Building Owner Manager Application", "Resident Application" };
+
+            foreach (var app in appsWithNames)
+            {
+                PDFScanAndSort.Models.Application a = apps.Find(item => item.Name == app);
+
+                if (a.Pages[0].Card.PageText != null)
+                {
+                    string pText = a.Pages[0].Card.PageText;
+
+                    if (app == "Building Owner Manager Application" && pText != null && pText != "")
+                    {
+                        pFrom = pText.IndexOf("tenant, ") + "tenant, ".Length;
+                        pTo = pText.IndexOf(" (");
+
+                        int words = pText.Substring(pFrom, pTo - pFrom).Trim().Split(' ').Length;
+
+                        if (words == 2)
+                        {
+                            result = pText.Substring(pFrom, pTo - pFrom).Trim();
+                        }
+
+                    }
+                    else if (app == "Resident Application" && pText != null && pText != "")
+                    {
+                        pFrom = pText.IndexOf("Dear ") + "Dear ".Length;
+                        pTo = pText.LastIndexOf(",\n\nAttached");
+
+                        int words = pText.Substring(pFrom, pTo - pFrom).Trim().Split(' ').Length;
+
+                        if (words == 2)
+                        {
+                            result = pText.Substring(pFrom, pTo - pFrom).Trim();
+                        }
+                    }
+
+                }
+            }
+            //add quote for some reason u have 2 
+
+            if (result != "")
+            {
+                result = "\"" + result + "\"";
+            }
+
+            return result;
+        }
 
         public static void RankCards(Form1 form)
         {

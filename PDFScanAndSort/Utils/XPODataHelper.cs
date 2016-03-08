@@ -16,6 +16,9 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 using DevExpress.XtraEditors;
+using GIBS;
+using PDFScanAndSort.Models;
+using GIBS.Module.Models.Generic.FileSystem;
 
 namespace PDFScanAndSort.Utils
 {
@@ -85,14 +88,51 @@ namespace PDFScanAndSort.Utils
             }
         }
 
-        public void SaveFileToDataBase(string ObjectKey, string fileLocation)
+        public void SaveFileToDataBase(string ObjectKey, List<Application> apps)
         {
             IObjectSpace space = this.Connect();
 
             using (space)
             {
-           //     Program p = space.GetObjectByKey<Program>(new Guid(ObjectKey));
+                GIBS.Module.Models.Programs.Program p = space.GetObjectByKey<GIBS.Module.Models.Programs.Program>(new Guid(ObjectKey));
 
+                if (p != null)
+                {
+                    foreach (var a in apps)
+                    {
+                        
+                        FileType fType = space.FindObject<FileType>(new BinaryOperator("Name", "PDF"));
+                        if (fType == null)
+                        {
+                            fType = space.CreateObject<FileType>();
+                            fType.Name = "PDF";
+                            space.CommitChanges();
+                        }
+
+                        GIBS.Module.Models.Generic.FileSystem.ApplicationType apptype = space.FindObject<GIBS.Module.Models.Generic.FileSystem.ApplicationType>(new BinaryOperator("Name", a.Name));
+
+                        if (apptype == null)
+                        {
+                            apptype = space.CreateObject<GIBS.Module.Models.Generic.FileSystem.ApplicationType>();
+                            apptype.Name = a.Name;
+                            space.CommitChanges();
+                        }
+
+                        FileSystemLinkObject fileobj = space.CreateObject<FileSystemLinkObject>();
+                        fileobj.DateAdded = DateTime.Now;
+                        fileobj.ServerFilePath = a.PDFLocation;
+                        fileobj.Name = Path.GetFileName(a.PDFLocation);
+                        fileobj.ApplicationType = apptype;
+
+                        fileobj.FileType = fType;
+
+                        p.FileSystemLinkObject.Add(fileobj);
+
+                        space.CommitChanges();
+
+
+                    }
+                }
 
 
             }

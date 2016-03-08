@@ -80,8 +80,9 @@
     <Reference Include="GhostscriptSharp">
       <HintPath>..\packages\GhostScriptSharp.1.3.1.4\lib\net40\GhostscriptSharp.dll</HintPath>
     </Reference>
-    <Reference Include="GIBS.Module">
-      <HintPath>..\..\..\..\Desktop\GIBS.Module.dll</HintPath>
+    <Reference Include="GIBS.Module, Version=1.0.5910.27112, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Development\GreenSaver\GIBS\GIBS.Module\bin\Release\GIBS.Module.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.8\lib\itextsharp.dll</HintPath>
