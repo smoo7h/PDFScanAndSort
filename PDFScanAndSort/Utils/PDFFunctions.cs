@@ -48,6 +48,7 @@ namespace PDFScanAndSort.Utils
                             {
                                 img.Save(pageFilePath, System.Drawing.Imaging.ImageFormat.Tiff);
                                 dictionary.Add(i, pageFilePath);
+                                
                             }
                        
                             
@@ -58,8 +59,9 @@ namespace PDFScanAndSort.Utils
                 rasterizer.Close();
                 rasterizer.Dispose();
 
-                return dictionary;
+             
             }
+            return dictionary;
         }
 
         [HandleProcessCorruptedStateExceptions]

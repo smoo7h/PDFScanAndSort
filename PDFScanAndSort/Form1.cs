@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -49,25 +50,16 @@ namespace PDFScanAndSort
             this.WindowState = FormWindowState.Maximized;
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\PDFScanAndSort\\Configs\\";
-            //Check if a config txt file exists, if not create one  
-            //if (!Directory.Exists(@path) || !File.Exists(path + "PDFFolder.txt"))
-            //{
-            //    Directory.CreateDirectory(@path);
-            //    TextWriter tw = new StreamWriter(path + "PDFFolder.txt", false);
-            //    tw.Dispose();
-            //    tw.Close();
-            //}
-            //else
-            //{
-            //    //If config txt file exists, read txt file  and set PDFFolder string with path
-            //    System.IO.StreamReader myFile = new System.IO.StreamReader(@path + "\\PDFFolder.txt");
-            //    PDFFolder = myFile.ReadLine();
-             
-            //    myFile.Close();
-            //}
+
+
 
             PDFFolder = Utils.ConfigSettings.ReadSetting("PDFFolder");
-          
+
+            //create remp folder
+
+            string p = Path.GetTempPath() + "ScannedPDFs\\";
+            Directory.CreateDirectory(p);
+
 
             //initalize list DB view
             try
@@ -100,6 +92,11 @@ namespace PDFScanAndSort
             cards.Clear();
             records.Clear();
             applications.Clear();
+            foreach (Card c in cards)
+            {
+                c.Dispose();
+            }
+
             cards = new List<Models.Card>();
             records = GridHelper.GetRecords();
             applications = new List<Models.Application>();
@@ -500,6 +497,12 @@ namespace PDFScanAndSort
                     .OrderByDescending(f => f.CreationTime)
                     .ToArray();
 
+                if (Directory.GetFiles(PDFFolder).Length == 0)
+                {
+                    MessageBox.Show("You do not have any PDF's to import");
+                    return;
+                }
+                
 
                 CurrentFullPDF = CurrentDoc[0].FullName;
 
@@ -688,7 +691,7 @@ namespace PDFScanAndSort
         {
                 //Iterate to next excel sheet in array
 
-            ClearTempFiles();
+         
                 resetControls();
                 //cmdScanDoc.PerformClick();
             
@@ -728,7 +731,7 @@ namespace PDFScanAndSort
             MessageBox.Show("Successfuly Imported =D");
 
             //delete the old PDF
-
+            ClearTempFiles();
 
 
         }
@@ -1064,15 +1067,23 @@ namespace PDFScanAndSort
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 Utils.ConfigSettings.AddUpdateAppSettings("PDFFolder", folderBrowserDialog1.SelectedPath);
+
+                PDFFolder = Utils.ConfigSettings.ReadSetting("PDFFolder");
             }
         }
 
         public void ClearTempFiles()
         {
 
-           string i = Environment.CurrentDirectory;
+            string p = Path.GetTempPath() + "ScannedPDFs\\";
 
-            Directory.Delete("ScannedPDFs");
+            Thread.Sleep(2000);
+
+            Directory.Delete(Path.GetTempPath() + "ScannedPDFs\\", true);
+
+
+
+            Directory.CreateDirectory(p);
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
