@@ -412,6 +412,8 @@ namespace PDFScanAndSort
 
             txtStreetAddress.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.StreetAddress1") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.StreetAddress1").ToString() : "";
 
+            txtFullAddress.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.FullAddress") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.FullAddress").ToString() : "";
+
             txtCity.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name").ToString() : "";
 
             txtLDC.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("LDC.Name") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("LDC.Name").ToString() : "";
@@ -450,6 +452,7 @@ namespace PDFScanAndSort
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.LastName");
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("Client.FAST");
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.StreetAddress1");
+                ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.FullAddress");
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("Address.City.Name");
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("LDC.Name");
                 ((ColumnView)gridControl1.Views[0]).Columns.AddField("ApplicationType");
@@ -477,7 +480,7 @@ namespace PDFScanAndSort
             {
                 if (item.GetType() == typeof(TextEdit))
                 {
-                    if (item.Text == "")
+                    if (item.Name != "txtFastNumber" && item.Text == "")
                     {
                         return false;
                     }
@@ -584,6 +587,8 @@ namespace PDFScanAndSort
             txtLastName.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Client.LastName") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Client.LastName").ToString() : "";
 
             txtStreetAddress.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.StreetAddress1") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.StreetAddress1").ToString() : "";
+
+            txtFullAddress.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.FullAddress") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.FullAddress").ToString() : "";
 
             txtCity.Text = ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name") != null ? ((ColumnView)gridControl1.Views[0]).GetFocusedRowCellValue("Address.City.Name").ToString() : "";
 
@@ -1034,20 +1039,20 @@ namespace PDFScanAndSort
             }
             
             //check and create user folder 
-            if (!Directory.Exists(LDCDir +"\\" +txtFastNumber.Text))
+            if (!Directory.Exists(LDCDir +"\\" +txtFullAddress.Text.Replace('.',' ')))
             {
                 //create it if it doesnt exist 
-                Directory.CreateDirectory(LDCDir + "\\" +txtFastNumber.Text);
+                Directory.CreateDirectory(LDCDir + "\\" + txtFullAddress.Text.Replace('.', ' '));
             }
             //set fodler to variable
-            userDestFolder = LDCDir + "\\"+txtFastNumber.Text;
+            userDestFolder = LDCDir + "\\" + txtFullAddress.Text.Replace('.', ' ');
             //filter the app list 
             applications.RemoveAll(item => item.Pages[0].Card.ImageLocation == null);
 
             //save origional untouched PDF to folder
-            File.Copy(CurrentFullPDF, userDestFolder +"\\" +txtFastNumber.Text +"-rawscan.pdf",true);
+            File.Copy(CurrentFullPDF, userDestFolder + "\\" + txtFullAddress.Text.Replace('.', ' ') + "-rawscan.pdf", true);
 
-            saveList.Add(userDestFolder + "\\" + txtFastNumber.Text + "-rawscan.pdf");
+            saveList.Add(userDestFolder + "\\" + txtFullAddress.Text.Replace('.', ' ') + "-rawscan.pdf");
 
             foreach (var item in applications)
             {
@@ -1074,16 +1079,19 @@ namespace PDFScanAndSort
 
         public void ClearTempFiles()
         {
-
             string p = Path.GetTempPath() + "ScannedPDFs\\";
 
-            Thread.Sleep(2000);
-
-            Directory.Delete(Path.GetTempPath() + "ScannedPDFs\\", true);
-
-
-
-            Directory.CreateDirectory(p);
+            try
+            {
+                  Directory.Delete(Path.GetTempPath() + "ScannedPDFs\\", true);
+                  Directory.CreateDirectory(p);
+            }
+            catch (Exception e)
+            {
+                
+              
+            }
+        
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1101,6 +1109,8 @@ namespace PDFScanAndSort
 
 
         }
+     
+        
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,48 +34,68 @@ namespace PDFScanAndSort.Models
             // creation of the document with a certain size and certain margins  
             using (iTextSharp.text.Document document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 0, 0, 0, 0))
             {
-
-                // creation of the different writers  
-                using (iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, new System.IO.FileStream(resultPDF, System.IO.FileMode.Create)))
+                using (FileStream fs = new System.IO.FileStream(resultPDF, System.IO.FileMode.Create))
                 {
-
-                    document.Open();
-                    foreach (Page page in Pages)
+                    // creation of the different writers  
+                    using (iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, fs))
                     {
-                        if (page.Card.ImageLocationLR != null)
+
+                        document.Open();
+                        foreach (Page page in Pages)
                         {
-                            // load the tiff image and count the total pages  
-                            using (System.Drawing.Bitmap bm = new System.Drawing.Bitmap(page.Card.ImageLocationLR))
+                            if (page.Card.ImageLocationLR != null)
                             {
-                                int total = bm.GetFrameCount(System.Drawing.Imaging.FrameDimension.Page);
+                                // load the tiff image and count the total pages  
 
-
-                                iTextSharp.text.pdf.PdfContentByte cb = writer.DirectContent;
-
-                             
-                                
-                                for (int k = 0; k < total; ++k)
+                                int total = 0;
+                                using (System.Drawing.Bitmap bm2 = new System.Drawing.Bitmap(page.Card.ImageLocationLR))
                                 {
-                                    bm.SelectActiveFrame(System.Drawing.Imaging.FrameDimension.Page, k);
-                                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bm, System.Drawing.Imaging.ImageFormat.Bmp);
-
-                                    
-                                    // scale the image to fit in the page  
-                                    img.ScalePercent(72f / img.DpiX * 100);
-                                    img.SetAbsolutePosition(0, 0);
-                                    cb.AddImage(img);
-                                    document.NewPage();
-
-                                    
+                                     total = bm2.GetFrameCount(System.Drawing.Imaging.FrameDimension.Page);
+                                    // bm2 = null;
+                                    bm2.Dispose();
                                 }
+                                   
+
+
+
+                                    for (int k = 0; k < total; ++k)
+                                    {
+                                        System.Drawing.Bitmap bm = new System.Drawing.Bitmap(page.Card.ImageLocationLR);
+                                        iTextSharp.text.pdf.PdfContentByte cb = writer.DirectContent;
+
+                                        bm.SelectActiveFrame(System.Drawing.Imaging.FrameDimension.Page, k);
+                                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bm, System.Drawing.Imaging.ImageFormat.Bmp);
+
+
+                                        // scale the image to fit in the page  
+                                        img.ScalePercent(72f / img.DpiX * 100);
+                                        img.SetAbsolutePosition(0, 0);
+                                        cb.AddImage(img);
+
+                                        document.NewPage();
+
+                                        img = null;
+                                        
+                                        cb.ClosePath();
+                                        bm.Dispose();
+                                    }
+
+                                   
+                                  
+                                
                             }
                         }
+
+                      
+
+                        document.Close();
+                        document.Dispose();
+                        writer.Dispose();
+                       
+                        fs.Close();
+                        fs.Dispose();
+
                     }
-
-
-                    document.Close();
-                    document.Dispose();
-                    writer.Dispose();
                 }
             }
         }

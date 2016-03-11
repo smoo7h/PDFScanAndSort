@@ -96,6 +96,8 @@ namespace PDFScanAndSort.Utils
                                     }
                                     i++;
                                 } while (iter.Next(PageIteratorLevel.Para, PageIteratorLevel.TextLine));
+
+                                iter.Dispose();
                             }
                         }
                     }
