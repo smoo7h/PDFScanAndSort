@@ -43,7 +43,7 @@ namespace PDFScanAndSort.Utils
                             Rank r = new Rank();
                             r.card = c;
                             r.Page = page;
-                            r.TextFound = c.PageText;
+                            r.TextFound = s;
                             RanksList.Add(r);
                         }
                     }

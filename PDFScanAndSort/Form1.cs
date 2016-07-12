@@ -251,6 +251,10 @@ namespace PDFScanAndSort
 
         void cmdAddApplication_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            
             NewAppWizard wizard = new NewAppWizard();
             wizard.ShowDialog();
             PDFScanAndSort.Models.Application app = wizard.Application;
@@ -365,7 +369,12 @@ namespace PDFScanAndSort
             btnContainer.Controls.Add(removebtn);
             panelLong.Controls.Add(btnContainer);
 
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
 
             
         }
@@ -493,6 +502,10 @@ namespace PDFScanAndSort
 
         private void cmdScanDoc_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+          
 
                 //Sort pdf files by date
                 CurrentDoc = new DirectoryInfo(PDFFolder)
@@ -508,6 +521,15 @@ namespace PDFScanAndSort
                 
 
                 CurrentFullPDF = CurrentDoc[0].FullName;
+
+
+            }
+            catch (Exception ef )
+            {
+
+                MessageBox.Show("cannot find pdf files check if you have any left");
+                return;
+            }
 
             List<Dictionary<int, string>> tiffLocations = new List<Dictionary<int, string>>();
             if (PDFFolder != "")
@@ -715,7 +737,7 @@ namespace PDFScanAndSort
             createPDFs();
 
             //save the pdf to gibs
-            savePDFToFolder();
+           savePDFToFolder();
             
             //attach PDF file paths to GIBS
 
@@ -947,9 +969,73 @@ namespace PDFScanAndSort
             ranker.RankCards();
 
             var grpApps = ranker.RanksList
+          .GroupBy(u => u.card,
+          u=> u.Page)
+          .Select(grp => grp.ToList())
+          .ToList();
+
+            var grpApps3 = ranker.RanksList
+            .GroupBy(u => u.card)
+            .Select(grp => grp.ToList())
+            .ToList();
+
+
+            var grpApps2 = ranker.RanksList
           .GroupBy(u => u.Page)
           .Select(grp => grp.ToList())
           .ToList();
+
+
+
+
+
+            foreach (var item in grpApps3)
+            {
+                var grpPage = item
+                   .GroupBy(u => u.Page)
+                   .Select(grp => grp.ToList())
+                   .ToList();
+
+                Card winningCard = null;
+                int winningGrpnum = 0;
+                int currentwinningGrpnum = 0;
+
+                foreach (var grpItem in grpPage)
+                {
+                    currentwinningGrpnum = grpItem.Count;
+
+                    if (winningGrpnum < currentwinningGrpnum)
+                    {
+                        winningGrpnum = currentwinningGrpnum;
+                        winningCard = grpItem[0].card;
+
+                        if (winningCard != null)
+                        {
+                            GridHelper.SwapCards(item[0].Page.Card, winningCard);
+                        }
+                    }
+
+                }
+
+
+
+            }
+        }
+
+
+    
+
+        private void cardSortold()
+        {
+            Ranker ranker = new Ranker(this.applications, this.cards);
+
+            ranker.RankCards();
+
+            var grpApps = ranker.RanksList
+          .GroupBy(u => u.Page)
+          .Select(grp => grp.ToList())
+          .ToList();
+
 
             foreach (var item in grpApps)
             {
@@ -970,14 +1056,16 @@ namespace PDFScanAndSort
                     {
                         winningGrpnum = currentwinningGrpnum;
                         winningCard = grpItem[0].card;
+
+                        if (winningCard != null)
+                        {
+                            GridHelper.SwapCards(item[0].Page.Card, winningCard);
+                        }
                     }
 
                 }
 
-                if (winningCard != null)
-                {
-                    GridHelper.SwapCards(item[0].Page.Card, winningCard);
-                }
+
 
             }
         }
@@ -1009,7 +1097,7 @@ namespace PDFScanAndSort
                 }
 
 
-                item.PDFLocation = appName;
+                item.PDFLocation =  appName;
 
             }
 
@@ -1107,6 +1195,30 @@ namespace PDFScanAndSort
                 Utils.ConfigSettings.AddUpdateAppSettings("DestinationFolder", folderBrowserDialog1.SelectedPath);
             }
 
+
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+             applications.RemoveAll(item => item.Pages[0].Card.ImageLocation == null);
+
+             foreach (var item in applications)
+             {
+                 using (StreamWriter sw = new StreamWriter(@"C:\pdf\" + item.Name + " " + new Random().Next() + ".txt"))
+                 {
+                     sw.WriteLine(item.Name);
+                     sw.WriteLine(Environment.NewLine);
+                     int count = 0;
+                     foreach (Page page in item.Pages)
+                     {
+                         sw.WriteLine(Environment.NewLine);
+                         sw.WriteLine("Page " + count.ToString());
+                         sw.WriteLine(Environment.NewLine);
+                         sw.WriteLine(page.Card.PageText);
+                         count++;
+                     }
+                 }
+             }
 
         }
      

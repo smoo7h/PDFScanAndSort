@@ -67,9 +67,14 @@ namespace PDFScanAndSort.Models
                                         iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bm, System.Drawing.Imaging.ImageFormat.Bmp);
 
 
+                                        img.ScaleToFitHeight = false;
+
+                                        img.ScalePercent(70f / img.DpiX * 100);
+
                                         // scale the image to fit in the page  
-                                        img.ScalePercent(72f / img.DpiX * 100);
-                                        img.SetAbsolutePosition(0, 0);
+                                       img.SetAbsolutePosition(-22, 25);
+
+
                                         cb.AddImage(img);
 
                                         document.NewPage();

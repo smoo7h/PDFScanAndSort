@@ -49,20 +49,22 @@
             this.xtraScrollableControl2 = new DevExpress.XtraEditors.XtraScrollableControl();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.xtraScrollableControl4 = new DevExpress.XtraEditors.XtraScrollableControl();
+            this.txtCity = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFullAddress = new DevExpress.XtraEditors.TextEdit();
+            this.txtStreetAddress = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.txtAppType = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtLDC = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.txtCity = new DevExpress.XtraEditors.TextEdit();
             this.txtFirstName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtFastNumber = new DevExpress.XtraEditors.TextEdit();
-            this.label1 = new System.Windows.Forms.Label();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtLastName = new DevExpress.XtraEditors.TextEdit();
-            this.txtStreetAddress = new DevExpress.XtraEditors.TextEdit();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.fLPItemNotFound = new System.Windows.Forms.FlowLayoutPanel();
             this.cmdImport = new DevExpress.XtraEditors.SimpleButton();
@@ -72,8 +74,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtFullAddress = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -85,18 +86,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             this.xtraScrollableControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFullAddress.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStreetAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFastNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStreetAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).BeginInit();
             this.panelControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullAddress.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -113,9 +114,10 @@
             this.cmdConfig,
             this.barButtonItem2,
             this.barButtonItem1,
-            this.barButtonItem4});
+            this.barButtonItem4,
+            this.barButtonItem5});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 6;
+            this.barManager1.MaxItemId = 7;
             // 
             // bar2
             // 
@@ -137,7 +139,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.cmdConfig),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // cmdConfig
@@ -294,6 +297,55 @@
             this.xtraScrollableControl4.Size = new System.Drawing.Size(444, 107);
             this.xtraScrollableControl4.TabIndex = 0;
             // 
+            // txtCity
+            // 
+            this.txtCity.Location = new System.Drawing.Point(299, 55);
+            this.txtCity.MenuManager = this.barManager1;
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(137, 20);
+            this.txtCity.TabIndex = 9;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(223, 58);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(19, 13);
+            this.labelControl4.TabIndex = 7;
+            this.labelControl4.Text = "City";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(220, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "StreetAddress";
+            // 
+            // txtFullAddress
+            // 
+            this.txtFullAddress.Location = new System.Drawing.Point(299, 3);
+            this.txtFullAddress.MenuManager = this.barManager1;
+            this.txtFullAddress.Name = "txtFullAddress";
+            this.txtFullAddress.Size = new System.Drawing.Size(137, 20);
+            this.txtFullAddress.TabIndex = 15;
+            // 
+            // txtStreetAddress
+            // 
+            this.txtStreetAddress.Location = new System.Drawing.Point(299, 29);
+            this.txtStreetAddress.MenuManager = this.barManager1;
+            this.txtStreetAddress.Name = "txtStreetAddress";
+            this.txtStreetAddress.Size = new System.Drawing.Size(137, 20);
+            this.txtStreetAddress.TabIndex = 6;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(223, 6);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(58, 13);
+            this.labelControl7.TabIndex = 14;
+            this.labelControl7.Text = "Full Address";
+            // 
             // txtAppType
             // 
             this.txtAppType.Location = new System.Drawing.Point(77, 81);
@@ -326,15 +378,6 @@
             this.labelControl5.TabIndex = 10;
             this.labelControl5.Text = "LDC";
             // 
-            // txtCity
-            // 
-            this.txtCity.Location = new System.Drawing.Point(299, 55);
-            this.txtCity.MenuManager = this.barManager1;
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(137, 20);
-            this.txtCity.TabIndex = 9;
- 
-            // 
             // txtFirstName
             // 
             this.txtFirstName.Location = new System.Drawing.Point(77, 3);
@@ -343,15 +386,6 @@
             this.txtFirstName.Size = new System.Drawing.Size(137, 20);
             this.txtFirstName.TabIndex = 0;
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(223, 58);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(19, 13);
-            this.labelControl4.TabIndex = 7;
-            this.labelControl4.Text = "City";
-
-            // 
             // txtFastNumber
             // 
             this.txtFastNumber.Location = new System.Drawing.Point(77, 55);
@@ -359,16 +393,6 @@
             this.txtFastNumber.Name = "txtFastNumber";
             this.txtFastNumber.Size = new System.Drawing.Size(137, 20);
             this.txtFastNumber.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "StreetAddress";
-
             // 
             // labelControl2
             // 
@@ -401,15 +425,6 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(137, 20);
             this.txtLastName.TabIndex = 2;
-            // 
-            // txtStreetAddress
-            // 
-            this.txtStreetAddress.Location = new System.Drawing.Point(299, 29);
-            this.txtStreetAddress.MenuManager = this.barManager1;
-            this.txtStreetAddress.Name = "txtStreetAddress";
-            this.txtStreetAddress.Size = new System.Drawing.Size(137, 20);
-            this.txtStreetAddress.TabIndex = 6;
-
             // 
             // panelControl4
             // 
@@ -481,23 +496,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtFullAddress
+            // barButtonItem5
             // 
-            this.txtFullAddress.Location = new System.Drawing.Point(299, 3);
-            this.txtFullAddress.MenuManager = this.barManager1;
-            this.txtFullAddress.Name = "txtFullAddress";
-            this.txtFullAddress.Size = new System.Drawing.Size(137, 20);
-            this.txtFullAddress.TabIndex = 15;
-
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Location = new System.Drawing.Point(223, 6);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(58, 13);
-            this.labelControl7.TabIndex = 14;
-            this.labelControl7.Text = "Full Address";
-         
+            this.barButtonItem5.Caption = "Export Raw Application Text";
+            this.barButtonItem5.Id = 6;
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // Form1
             // 
@@ -529,18 +533,18 @@
             this.panelControl3.ResumeLayout(false);
             this.xtraScrollableControl4.ResumeLayout(false);
             this.xtraScrollableControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFullAddress.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStreetAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAppType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLDC.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCity.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFastNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStreetAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl5)).EndInit();
             this.panelControl5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtFullAddress.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -592,6 +596,7 @@
         private DevExpress.XtraEditors.TextEdit txtFullAddress;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
 
 
 
