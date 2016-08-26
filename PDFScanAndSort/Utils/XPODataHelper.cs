@@ -91,7 +91,8 @@ namespace PDFScanAndSort.Utils
         public void SaveFileToDataBase(string ObjectKey, List<Application> apps)
         {
             IObjectSpace space = this.Connect();
-
+            string serverLinkLocation = Utils.ConfigSettings.ReadSetting("DestinationFolder");
+            
             using (space)
             {
                 GIBS.Module.Models.Programs.Program p = space.GetObjectByKey<GIBS.Module.Models.Programs.Program>(new Guid(ObjectKey));
@@ -120,7 +121,7 @@ namespace PDFScanAndSort.Utils
 
                         FileSystemLinkObject fileobj = space.CreateObject<FileSystemLinkObject>();
                         fileobj.DateAdded = DateTime.Now;
-                        fileobj.ServerFilePath = a.PDFLocation;
+                        fileobj.ServerFilePath = a.ServerLink;
                         fileobj.Name = Path.GetFileName(a.PDFLocation);
                         fileobj.ApplicationType = apptype;
 

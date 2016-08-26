@@ -1,182 +1,303 @@
 [
   {
     "PageNumber": 0,
-    "SearchTerms": "day 2hrs,Block Heater Timer Threshold,on-site Auditor on this date",
-    "Application": "Basic Measures Data Collection Form",
+    "SearchTerms": "Tri-Light,CFL15,CFL25,PAR-30,Defective Bulbs,1hr/day",
+    "Application": "Basic and Extended Measures Data Collection Form",
     "SearchTermStringList": [
-      "day 2hrs",
-      "Block Heater Timer Threshold",
-      "on-site Auditor on this date"
-    ]
-  },
-  {
-    "PageNumber": 0,
-    "SearchTerms": "Handle Location Door,Existing Desired,Refrigerator/Freezer",
-    "Application": "Extended Measres Data Collection Form",
-    "SearchTermStringList": [
-      "Handle Location Door",
-      "Existing Desired",
-      "Refrigerator/Freezer"
-    ]
-  },
-  {
-    "PageNumber": 0,
-    "SearchTerms": "incandescent lighting will be replaced free of charge,Some of the other items in your tenant's unit,Everything offered in the program is delivered and installed",
-    "Application": "Building Owner Manager Application",
-    "SearchTermStringList": [
-      "incandescent lighting will be replaced free of charge",
-      "Some of the other items in your tenant's unit",
-      "Everything offered in the program is delivered and installed"
+      "Tri-Light",
+	  "CFL15",
+	  "CFL25",
+	  "PAR-30",
+	  "Defective Bulbs",
+	  "1hr/day"
     ]
   },
   {
     "PageNumber": 1,
-    "SearchTerms": "if you own or manage the building,Buildings that are not Social and/or Assisted Housing,approach to the tenants in your building to determine",
-    "Application": "Building Owner Manager Application",
+    "SearchTerms": "Temp Adjustment (TA):,Reading in kWh (R):,Annual kWh Estimate:,Door Handle Location",
+    "Application": "Basic and Extended Measures Data Collection Form",
     "SearchTermStringList": [
-      "if you own or manage the building",
-      "Buildings that are not Social and/or Assisted Housing",
-      "approach to the tenants in your building to determine"
+		"Temp Adjustment (TA):",
+		"Reading in kWh (R):",
+		"Annual kWh Estimate:",
+		"Door Handle Location"
     ]
   },
   {
     "PageNumber": 2,
-    "SearchTerms": "electric water heating are eligible to receive the,Only units that are heated by electricity are eligible to receive the programmable thermostat,building electric bulk metered",
+    "SearchTerms": "(Need age and usage frequency),Cooling Capacity (BTU/hr):,Amperage Rating (A):",
+    "Application": "Basic and Extended Measures Data Collection Form",
+    "SearchTermStringList": [
+      "(Need age and usage frequency)",
+	  "Cooling Capacity (BTU/hr):",
+	  "Amperage Rating (A):"
+    ]
+  },
+  {
+	"PageNumber": 0,
+	"SearchTerms": "ENBLI/HAP Data form,Front Counts,Back Counts",
+	"Application": "ENBLI and HAP Data Form",
+	"SearchTermStringList":[
+		"ENBLI/HAP Data form",
+		"Front Counts",
+		"Back Counts"
+	]
+  },
+  {
+	"PageNumber": 1,
+	"SearchTerms": "Cooling system,Any Vermiculite found?,Knob & Tube seen in attic",
+	"Application": "ENBLI and HAP Data Form",
+	"SearchTermStringList":[
+		"Cooling system",
+		"Any Vermiculite found?",
+		"Knob & Tube seen in attic"
+	]
+  },
+  {
+	"PageNumber": 2,
+	"SearchTerms": "Dimensions,Sketches",
+	"Application": "ENBLI and HAP Data Form",
+	"SearchTermStringList":[
+		"Dimensions",
+		"Sketches"
+	]
+  },
+  {
+	"PageNumber": 3,
+	"SearchTerms": "Ventilation Adequacy,Health and Safety Checklist,Notes in General",
+	"Application": "ENBLI and HAP Data Form",
+	"SearchTermStringList":[
+		"Ventilation Adequacy",
+		"Health and Safety Checklist",
+		"Notes in General"
+	]
+  },
+  {
+	"PageNumber": 0,
+	"SearchTerms": "Deduction for CPP or QPP contributions,Gross commission income,Net commission income,Refund or Balance owing",
+	"Application": "Tax Form",
+	"SearchTermStringList":[
+		"Deduction for CPP or QPP contributions",
+		"Gross commission income",
+		"Net commission income",
+		"Refund or Balance owing"
+	]
+  },
+  {
+	"PageNumber": 1,
+	"SearchTerms": "Taxable income ...,Net income ...,Total payable ...",
+	"Application": "Tax Form",
+	"SearchTermStringList":[
+		"Taxable income ...",
+		"Net income ...",
+		"Total payable ..."
+	]
+	
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "we require a completed Building Owner/Manager,to proceed with your tenant's application,by you or the designated building owner/manager",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
-      "electric water heating are eligible to receive the",
-      "Only units that are heated by electricity are eligible to receive the programmable thermostat",
-      "building electric bulk metered"
+      "we require a completed Building Owner/Manager",
+	  "to proceed with your tenant's application",
+	  "by you or the designated building owner/manager"
+    ]
+  },
+  {
+    "PageNumber": 1,
+    "SearchTerms": "BUILDING OWNER/MANAGER APPLICATION,Complete this Building Owner/Manager Application,1. Building Owner/Manager Information",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": [
+      "BUILDING OWNER/MANAGER APPLICATION",
+      "Complete this Building Owner/Manager Application",
+      "1. Building Owner/Manager Information"
+    ]
+  },
+  {
+    "PageNumber": 2,
+    "SearchTerms": "2. Building Information,hot water tank pipe insulation and hot water tank insulation,Only units that have electric water heating are eligible to receive the efficient showerheads",
+    "Application": "Building Owner Manager Application",
+    "SearchTermStringList": [
+      "2. Building Information",
+      "hot water tank pipe insulation and hot water tank insulation",
+      "Only units that have electric water heating are eligible to receive the efficient showerheads"
     ]
   },
   {
     "PageNumber": 3,
-    "SearchTerms": "products or devices from resulting in electricity savings,due to conditions of the unit that would prevent energy,failure to meet the HOME ASSISTANCE ",
+    "SearchTerms": "3. Energy Efficient Devices and Products,the right not to approve your Application for any reason.",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
-      "products or devices from resulting in electricity savings",
-      "due to conditions of the unit that would prevent energy",
-      "failure to meet the HOME ASSISTANCE"
+	  "3. Energy Efficient Devices and Products",
+      "the right not to approve your Application for any reason."
     ]
   },
   {
     "PageNumber": 4,
-    "SearchTerms": "The unit must be electrically heated to receive these measures,The unit must be electrically heated to receive these measures,All information contained in this Application is complete",
+    "SearchTerms": "5. Terms and conditions:,By signing and submitting this Building Owner/Manager Application,the Building Owner/Manager hereby agrees that:",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
-      "The unit must be electrically heated to receive these measures",
-      "The unit must be electrically heated to receive these measures",
-      "All information contained in this Application is complete"
+      "5. Terms and conditions:",
+      "By signing and submitting this Building Owner/Manager Application",
+      "the Building Owner/Manager hereby agrees that:"
     ]
   },
   {
     "PageNumber": 5,
-    "SearchTerms": "such cost in writing prior to the cost being incurred,The Building Owner/Manager acknowledges that the IESO,in its capacity as agent for and on behalf",
+    "SearchTerms": "The Building Owner/Manager must comply with all applicable laws to enter each,Neither of the IESO",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
-      "such cost in writing prior to the cost being incurred",
-      "The Building Owner/Manager acknowledges that the IESO",
-      "in its capacity as agent for and on behalf"
+      "The Building Owner/Manager must comply with all applicable laws to enter each",
+      "Neither of the IESO"
     ]
   },
   {
     "PageNumber": 6,
-    "SearchTerms": "and this Application will not be deemed to confer upon or give to any other person,increase in the annual rent amounts paid by such tenants,which consent may be unreasonably withheld or delayed",
+    "SearchTerms": "9 and 10 of Section 5 of this Building Owner/Manager Application,Except as provided in bullet 6",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
-      "and this Application will not be deemed to confer upon or give to any other person",
-      "increase in the annual rent amounts paid by such tenants",
-      "which consent may be unreasonably withheld or delayed"
+      "9 and 10 of Section 5 of this Building Owner/Manager Application",
+      "Except as provided in bullet 6"
     ]
   },
   {
     "PageNumber": 7,
-    "SearchTerms": "we have authority to bind the Building Owner,AUTHORIZED DATE,BUILDING OWNER",
+    "SearchTerms": "we have authority to bind the Building Owner,AUTHORIZED DATE:,NAME: TITLE:",
     "Application": "Building Owner Manager Application",
     "SearchTermStringList": [
       "we have authority to bind the Building Owner",
-      "AUTHORIZED DATE",
-      "BUILDING OWNER"
+      "AUTHORIZED DATE:",
+      "NAME: TITLE:"
     ]
   },
   {
     "PageNumber": 0,
-    "SearchTerms": "PARTICIPANT CONSENT,after the energy audit,products or devices is subject to all terms and conditions",
-    "Application": "Participant Consent Form",
+    "SearchTerms": "RESIDENT CONSENT,This Resident Consent forms,and in this Resident Consent",
+    "Application": "Residential Consent Form",
     "SearchTermStringList": [
-      "PARTICIPANT CONSENT",
-      "after the energy audit",
-      "products or devices is subject to all terms and conditions"
+      "RESIDENT CONSENT",
+	  "This Resident Consent forms",
+	  "and in this Resident Consent"
     ]
   },
   {
     "PageNumber": 1,
-    "SearchTerms": "including due to conditions in the home,conditions for each energy efficient device and product,to ensure you are eligible to receive",
-    "Application": "Participant Consent Form",
+    "SearchTerms": "5. Consent for Installation of Extended Measure or Weatherization Measure,you do not live in Social and/or Assisted Housing,you must own your home to have insulation installed",
+    "Application": "Residential Consent Form",
     "SearchTermStringList": [
-      "including due to conditions in the home",
-      "conditions for each energy efficient device and product",
-      "to ensure you are eligible to receive"
+      "5. Consent for Installation of Extended Measure or Weatherization Measure",
+	  "you do not live in Social and/or Assisted Housing",
+	  "you must own your home to have insulation installed"
     ]
   },
   {
     "PageNumber": 2,
-    "SearchTerms": "Freezer Relacement,Hot Water Tank Insulation,Weatherization Measures",
+    "SearchTerms": "Resident Application and this Resident Consent,Resident Application continues to be and all information in this Resident Consent",
+    "Application": "Residential Consent Form",
+    "SearchTermStringList": [
+      "Resident Application and this Resident Consent",
+	  "Resident Application continues to be and all information in this Resident Consent"
+    ]
+  },
+  {
+    "PageNumber": 3,
+    "SearchTerms": "(must be signed by the Resident after the installation of all Eligible Measures,the Resident agrees that the above Eligible Measures and/or,Resident Signature:",
+    "Application": "Residential Consent Form",
+    "SearchTermStringList": [
+      "(must be signed by the Resident after the installation of all Eligible Measures",
+	  "the Resident agrees that the above Eligible Measures and/or",
+	  "Resident Signature:"
+    ]
+  },
+  {
+    "PageNumber": 0,
+    "SearchTerms": "PARTICIPANT CONSENT,Complete this Participant Consent,products or devices is subject to all terms and conditions,This Consent forms a part of your Participant Application,Please review the terms and conditions of your Participant Application",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "PARTICIPANT CONSENT",
+	  "Complete this Participant Consent",
+      "products or devices is subject to all terms and conditions",
+	  "This Consent forms a part of your Participant Application",
+	  "Please review the terms and conditions of your Participant Application"
+    ]
+  },
+  {
+    "PageNumber": 1,
+    "SearchTerms": "ensure you are eligible to receive a particular,Please check the Participant Application to ensure,Device/Product",
+    "Application": "Participant Consent Form",
+    "SearchTermStringList": [
+      "ensure you are eligible to receive a particular",
+      "Please check the Participant Application to ensure",
+      "Device/Product"
+    ]
+  },
+  {
+    "PageNumber": 2,
+    "SearchTerms": "Freezer Relacement,Hot Water Tank Insulation,Weatherization Measures,removing and disposing of existing refrigerator(s),removing and disposing of existing portable dehumidifier(s),consent to the installation of a programmable thermostat,removing and disposing of existing window air conditioner(s)",
     "Application": "Participant Consent Form",
     "SearchTermStringList": [
       "Freezer Relacement",
       "Hot Water Tank Insulation",
-      "Weatherization Measures"
+      "Weatherization Measures",
+	  "removing and disposing of existing refrigerator(s)",
+	  "removing and disposing of existing portable dehumidifier(s)",
+	  "consent to the installation of a programmable thermostat",
+	  "removing and disposing of existing window air conditioner(s)"
     ]
   },
   {
     "PageNumber": 3,
-    "SearchTerms": "You agree that any newly installed refrigerator,you confirm that any showerheads,All information provided in your Participant Application",
+    "SearchTerms": "You agree that any newly installed refrigerator,you confirm that any showerheads,All information provided in your Participant Application,drilling a hole in the wall,will fill the hole, will not paint,Received by (LDC Representative)",
     "Application": "Participant Consent Form",
     "SearchTermStringList": [
       "You agree that any newly installed refrigerator",
       "you confirm that any showerheads",
-      "All information provided in your Participant Application"
+      "All information provided in your Participant Application",
+	  "drilling a hole in the wall",
+	  "will fill the hole",
+	  "will not paint",
+	  "Received by (LDC Representative)"
     ]
   },
   {
     "PageNumber": 0,
-    "SearchTerms": "Home Assistance Program c/o GreenSaver,Attached is a pre-populated application for the Home Assistance Program,Mail the signed application",
+    "SearchTerms": "b. Fax the signed application (with cover page),c. Scan and email the signed application (with cover page),a. Mail the signed application (with cover page)",
     "Application": "Resident Application",
     "SearchTermStringList": [
-      "Home Assistance Program c/o GreenSaver",
-      "Attached is a pre-populated application for the Home Assistance Program",
-      "Mail the signed application"
+      "b. Fax the signed application (with cover page)",
+      "c. Scan and email the signed application (with cover page)",
+      "a. Mail the signed application (with cover page)"
     ]
   },
   {
     "PageNumber": 1,
-    "SearchTerms": "Complete this Resident Application if you are interested in participating,you must also submit a completed Building Owner,please contact GreenSaver toll free at",
+    "SearchTerms": "Complete this Resident Application if you are interested in participating,RESIDENT APPLICATION",
     "Application": "Resident Application",
     "SearchTermStringList": [
       "Complete this Resident Application if you are interested in participating",
-      "you must also submit a completed Building Owner",
-      "please contact GreenSaver toll free at"
+      "RESIDENT APPLICATION"
     ]
   },
   {
     "PageNumber": 2,
-    "SearchTerms": "you MUST meet the following eligibility,If you live in Social and/or Assisted Housing,criteria to participate in this Initiative",
+    "SearchTerms": "You must be the primary or secondary account holder,How is your home heated?:,How is your water heated?:,By signing and submitting this Resident Application",
     "Application": "Resident Application",
     "SearchTermStringList": [
-      "you MUST meet the following eligibility",
-      "If you live in Social and/or Assisted Housing",
-      "criteria to participate in this Initiative"
+      "You must be the primary or secondary account holder",
+      "How is your home heated?:",
+      "How is your water heated?:",
+	  "By signing and submitting this Resident Application"
     ]
   },
   {
     "PageNumber": 3,
-    "SearchTerms": "lf you and your home are offered any energy efficient products,you will be asked to complete a Resident Consent form,share and handle your information including personal information",
+    "SearchTerms": "Official Use Only,you will be asked to complete a Resident Consent form,Your information will not be shared except as set out in this",
     "Application": "Resident Application",
     "SearchTermStringList": [
-      "lf you and your home are offered any energy efficient products",
+      "Official Use Only",
       "you will be asked to complete a Resident Consent form",
-      "share and handle your information including personal information"
+      "Your information will not be shared except as set out in this"
     ]
   }
 ]

@@ -17,6 +17,7 @@ namespace PDFScanAndSort.Models
 
         }
 
+        public string ServerLink { get; set; }
 
         public string Name { get; set; }
 

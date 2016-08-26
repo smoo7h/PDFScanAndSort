@@ -44,6 +44,7 @@ namespace PDFScanAndSort
         //List of excel sheets
         public FileInfo[] CurrentDoc;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -726,6 +727,31 @@ namespace PDFScanAndSort
 
         private void cmdImport_Click(object sender, EventArgs e)
         {
+            foreach (var item in applications)
+            {
+
+                Console.WriteLine("APPLICATION NAME");
+
+                Console.WriteLine(item.Name);
+
+                foreach (var page in item.Pages)
+                {
+
+                    Console.WriteLine("page number");
+
+                    Console.WriteLine(page.PageNumber.ToString());
+
+                    Console.WriteLine("foound items");
+
+
+
+                    Console.WriteLine(page.Card.PageText);
+
+
+
+                }
+
+            }
 
             if (Validate() == false)
             {
@@ -1145,6 +1171,7 @@ namespace PDFScanAndSort
             foreach (var item in applications)
             {
                 //save PDF to director
+                item.ServerLink = userDestFolder + "\\" + Path.GetFileName(item.PDFLocation);
                 File.Copy(item.PDFLocation, userDestFolder + "\\"  + Path.GetFileName(item.PDFLocation), true);
                 saveList.Add(userDestFolder + "\\" + Path.GetFileName(item.PDFLocation));
             }
