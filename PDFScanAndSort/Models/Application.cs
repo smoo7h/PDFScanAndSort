@@ -73,7 +73,8 @@ namespace PDFScanAndSort.Models
                                         img.ScalePercent(70f / img.DpiX * 100);
 
                                         // scale the image to fit in the page  
-                                       img.SetAbsolutePosition(-22, 25);
+                                     //Lukas old value   img.SetAbsolutePosition(-22, 25);
+                                       img.SetAbsolutePosition(0, 0);
 
 
                                         cb.AddImage(img);

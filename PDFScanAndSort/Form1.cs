@@ -1170,9 +1170,38 @@ namespace PDFScanAndSort
 
             foreach (var item in applications)
             {
+
+                if (File.Exists(userDestFolder + "\\" + Path.GetFileName(item.PDFLocation)))
+                {
+                    string[] files = Directory.GetFiles(userDestFolder, "*.pdf", SearchOption.AllDirectories);
+                    int counter = 1;
+                    foreach (string s in files)
+                    {
+                        if (s.Contains(Path.GetFileName(item.PDFLocation).Replace(".pdf","")))
+                        {
+                            counter++;
+                        }
+                    }
+
+                    string newfilename = Path.GetFileName(item.PDFLocation).Insert(Path.GetFileName(item.PDFLocation).LastIndexOf(".pdf"), " " + counter.ToString());
+                    //;
+
+                    File.Copy(item.PDFLocation, userDestFolder + "\\" + newfilename, false);
+
+
+                }
+                else
+                {
+                    File.Copy(item.PDFLocation, userDestFolder + "\\" + Path.GetFileName(item.PDFLocation), false);
+
+                }
+
+
                 //save PDF to director
-                item.ServerLink = userDestFolder + "\\" + Path.GetFileName(item.PDFLocation);
-                File.Copy(item.PDFLocation, userDestFolder + "\\"  + Path.GetFileName(item.PDFLocation), true);
+
+
+
+
                 saveList.Add(userDestFolder + "\\" + Path.GetFileName(item.PDFLocation));
             }
 

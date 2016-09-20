@@ -5,3 +5,4 @@ PDFScanAndSort/obj/Debug/PDFScanAndSort.csproj.FileListAbsolute.txt
 *.tiff
 PDFScanAndSort/ScannedPDFs/copier1@greensaver.org_20160112_150327.pdf/highRes/copier1@greensaver.org_20160112_150327-p3.tiff
 *.tiff
+*.dll
